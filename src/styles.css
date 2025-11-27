@@ -1,1 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght,GRAD@0,8..144,100..900,100;1,8..144,100..900,100&family=Space+Grotesk:wght@300..700&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+  --color-background: #13132d;
+  --color-text: #c8c2ff;
+  --color-primary: #2a2d7c;
+  --color-secondary: #551a63;
+  --color-accent: #44d9e6;
+
+  --color-card: #26265a;
+  --font-roboto-serif: "Roboto Serif", serif;
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+}
+
+@utility bg-darken-* {
+  background-color: color-mix(in srgb, --value(--color), black 20%);
+}
+
+body {
+  @apply bg-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+.logo {
+  @apply font-roboto-serif text-4xl font-black;
+}

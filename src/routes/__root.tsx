@@ -23,6 +23,7 @@ function RootComponent() {
   return (
     <html lang={getLocale()}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <HydrationScript />
       </head>
       <body>

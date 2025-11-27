@@ -13,14 +13,22 @@
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@kobalte/core": "^0.13.11",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/router-plugin": "^1.133.21",
     "@tanstack/solid-router": "^1.133.20",
     "@tanstack/solid-router-devtools": "^1.133.20",
     "@tanstack/solid-start": "^1.132.25",
+    "@types/node": "^24.10.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "gsap": "^3.13.0",
     "lucide-solid": "^0.544.0",
     "nitro": "latest",
+    "ogl": "^1.0.11",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "solid-js": "^1.9.9",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.0.6",
     "vite": "^7.1.7",
     "vite-tsconfig-paths": "^5.1.4"

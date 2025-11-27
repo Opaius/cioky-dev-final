@@ -6,7 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
 import solidPlugin from "vite-plugin-solid";
-import { nitro } from "nitro/vite";
 import { translatedPathnames } from "@/utils/pathnames";
 
 export default defineConfig({
@@ -20,7 +19,6 @@ export default defineConfig({
       urlPatterns: translatedPathnames,
     }),
     devtools(),
-    nitro(),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
