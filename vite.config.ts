@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
 import solidPlugin from "vite-plugin-solid";
-import { translatedPathnames } from "@/utils/pathnames";
+import { translatedPathnames } from "./src/utils/pathnames";
 
 export default defineConfig({
   plugins: [
