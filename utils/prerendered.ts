@@ -1,4 +1,4 @@
-import { localizeHref } from "@/paraglide/runtime";
+import { localizeHref } from "../src/paraglide/runtime";
 import { translatedPathnames } from "./pathnames";
 
 export const prerenderRoutes = translatedPathnames.flatMap((path) =>
