@@ -29,7 +29,7 @@ export default defineConfig({
       },
       sitemap: {
         enabled: true,
-        host: process.env.HOST || "http://localhost:3000",
+        host: process.env.VITE_HOST || "http://localhost:3000",
       },
       pages: prerenderRoutes,
     }),

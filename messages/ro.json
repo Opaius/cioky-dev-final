@@ -1,4 +1,25 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Guten Tag {username}"
+
+  "og_title": "Dezvoltare software expert. Construită Lean,",
+  "og_gradient": "Preț corect.",
+  "og_button": "Vezi acum!",
+
+  "meta_homepage_title": "Dezvoltator Independent - Aplicații Custom & Prețuri Oneste",
+  "meta_homepage_description": "Dezvoltator independent. Fără taxe de agenție! Construiesc aplicații și site-uri custom de înaltă performanță. Prețuri complet transparente și livrare rapidă.",
+
+  "hero_title": "Soluții Personalizate Construite Direct. Muncă de Expert,",
+  "hero_gradient": "Prețuri Oneste.",
+  "hero_description": "Elimin zgomotul agenției și mă concentrez în totalitate pe construirea site-ului sau aplicației tale personalizate. Așteaptă-te la prețuri transparente, atenție dedicată și o cale directă spre lansare.",
+  "hero_button_resume": "Vezi CV-ul și Competențele Mele",
+  "hero_button_start_project": "Începe Proiectul Tău Acum",
+
+  "bento_1_title": "Concentrare Dedicată, Tehnologii Moderne",
+  "bento_1_description": "Deși nu sunt un dezvoltator \"Senior\" cu 20 de ani în domeniu, aduc un maxim de concentrare și o cunoaștere actualizată a celor mai noi și eficiente tehnologii. Primești cod curat și de încredere fără să plătești pentru experiență învechită inutilă.",
+  "bento_2_title": "Zero Cheltuieli Suplimentare = Economii Reale",
+  "bento_2_description": "Nu am un birou de agenție sau o echipă de vânzări—bugetul tău merge direct în construcție, nu în costuri corporative.",
+  "bento_3_title": "Livrare Simplificată, Predictibilă",
+  "bento_3_description": "Definim clar scopul de la început, iar eu îmi gestionez timpul pentru a asigura o lansare rapidă, care este de încredere, nu doar grăbită.",
+  "bento_4_title": "Soluții Care Cresc Odată cu Tine",
+  "bento_4_description": "Fie că ai nevoie de un site de marketing simplu și solid sau de o aplicație web de dimensiuni medii care necesită gestionare complexă a datelor, construiesc platforme suficient de flexibile pentru a-ți îndeplini nevoile curente și pentru a scala atunci când afacerea ta este pregătită."
 }

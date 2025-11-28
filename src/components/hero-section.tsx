@@ -3,7 +3,7 @@ import SplitText from "./ui/split-text";
 import GradientText from "./ui/gradient-text";
 import { createSignal } from "solid-js";
 import { Button } from "./ui/button";
-
+import { m } from "@/paraglide/messages";
 export function HeroSection() {
   const [startSecond, setStartSecond] = createSignal(false);
   return (
@@ -34,7 +34,7 @@ export function HeroSection() {
             splitType="lines"
             onLetterAnimationComplete={() => setStartSecond(true)}
           >
-            Custom Solutions Built Direct. Expert Work,{" "}
+            {m.hero_title()}{" "}
             <span>
               <GradientText
                 class="inline-block overflow-visible leading-14 font-bold"
@@ -48,7 +48,7 @@ export function HeroSection() {
                 ]}
                 animationSpeed={300}
               >
-                Honest Pricing.
+                {m.hero_gradient()}
               </GradientText>
             </span>
           </SplitText>
@@ -60,19 +60,17 @@ export function HeroSection() {
             splitType="lines"
             start={startSecond()}
           >
-            I cut out the agency noise and focus entirely on building your
-            custom website or app. Expect transparent pricing, dedicated
-            attention, and a straightforward path to launch.
+            {m.hero_description()}
           </SplitText>
           <div class="grid w-full grid-rows-2 gap-3 sm:grid-cols-2 md:grid-rows-1">
             <Button class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold">
-              View My Resume & Skills
+              {m.hero_button_resume()}
             </Button>
             <Button
               variant="secondary"
               class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold"
             >
-              Start Your Project Now
+              {m.hero_button_start_project()}
             </Button>
           </div>
         </div>

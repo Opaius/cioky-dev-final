@@ -1,4 +1,25 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Hello world {username}"
+
+  "og_title": "Expert Software Development. Built Lean,",
+  "og_gradient": "Priced Fairly.",
+  "og_button": "Check me now!",
+
+  "meta_homepage_title": "Independent Developer - Custom Apps & Honest Pricing",
+  "meta_homepage_description": "Independent developer. No agency fees! I build custom apps and websites with high performance. Transparent pricing and fast delivery.",
+
+  "hero_title": "Custom Solutions Directly Built. Expert Work,",
+  "hero_gradient": "Honest Pricing.",
+  "hero_description": "I cut out the agency noise and focus entirely on building your custom website or app. Expect transparent pricing, dedicatedattention, and a straightforward path to launch.",
+  "hero_button_resume": "View My Resume & Skills",
+  "hero_button_start_project": "Start Your Project Now",
+
+  "bento_1_title": "Dedicated Focus, Modern Stack",
+  "bento_1_description": "While I'm not a \"Senior\" developer with 20 years in the field, I bring maximum focus and an up-to-date knowledge of the latest, most efficient tech. You get reliable, clean code without paying forunnecessary legacy experience.",
+  "bento_2_title": "Zero Overhead = Real Savings",
+  "bento_2_description": "I don't have an agency office or a sales team—your budget goes straight into the build, not into corporate costs.",
+  "bento_3_title": "Streamlined, Predictable Delivery",
+  "bento_3_description": "We define the scope clearly upfront, and I manage my time to ensure a rapid launch that's reliable, not just rushed.",
+  "bento_4_title": "Solutions That Grow With You",
+  "bento_4_description": "Whether you need a simple, solid marketing site or a mid-size web app that requires complex data handling, I build platforms that are flexible enough to meet your current needs and scale when your business is ready."
 }
