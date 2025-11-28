@@ -24,6 +24,13 @@ export default defineConfig({
     }),
     tailwindcss(),
     tanstackStart({
+      prerender: {
+        crawlLinks: false,
+      },
+      sitemap: {
+        enabled: true,
+        host: process.env.HOST || "http://localhost:3000",
+      },
       pages: prerenderRoutes,
     }),
     solidPlugin({ ssr: true }),
