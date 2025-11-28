@@ -7,7 +7,7 @@ import compression from "vite-plugin-compression";
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
 import solidPlugin from "vite-plugin-solid";
 import { translatedPathnames } from "./utils/pathnames";
-import { prerenderRoutes } from "utils/prerendered";
+import { prerenderRoutes } from "./utils/prerendered";
 
 export default defineConfig({
   plugins: [
