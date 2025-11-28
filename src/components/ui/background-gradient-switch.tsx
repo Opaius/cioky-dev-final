@@ -9,7 +9,7 @@ import {
   useContext,
 } from "solid-js";
 import { Dynamic, Portal } from "solid-js/web";
-import gsap from "gsap";
+import gsap from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getComputedColor } from "@/utils/getComputedColor";
 import type { Component, JSX, ParentProps } from "solid-js";

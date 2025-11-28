@@ -8,26 +8,10 @@ import {
   onMount,
 } from "solid-js";
 import { Camera, Geometry, Mesh, Program, Renderer } from "ogl";
-import gsap from "gsap";
+import gsap from "gsap/gsap-core";
 import { hexToRgb } from "@/utils/hexToRGB";
 import type { Component } from "solid-js";
 
-/**
- * @interface ParticlesProps
- * @description Defines the props for the Particles component.
- * @property {number} [particleCount=200] - The total number of particles to render.
- * @property {number} [particleSpread=10] - The radius of the sphere in which particles are distributed.
- * @property {number} [speed=0.1] - The animation speed of the particles.
- * @property {Array<string>} [particleColors] - An array of CSS variable strings for particle colors.
- * @property {boolean} [moveParticlesOnHover=false] - Whether particles should react to mouse movement.
- * @property {number} [particleHoverFactor=1] - The intensity of the particle movement on hover.
- * @property {boolean} [alphaParticles=false] - Toggles whether particles have a soft, transparent edge.
- * @property {number} [particleBaseSize=100] - The base size of each particle.
- * @property {number} [sizeRandomness=1] - The degree of random variation in particle size.
- * @property {number} [cameraDistance=20] - The distance of the camera from the particle origin.
- * @property {boolean} [disableRotation=false] - Disables the automatic rotation of the particle system.
- * @property {string} [class] - Additional CSS classes to apply to the container element.
- */
 interface ParticlesProps {
   particleCount?: number;
   particleSpread?: number;

@@ -1,12 +1,13 @@
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import { defineConfig } from "vite";
-import { devtools } from "@tanstack/devtools-vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
+import compression from "vite-plugin-compression";
 
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite";
 import solidPlugin from "vite-plugin-solid";
-import { translatedPathnames } from "./src/utils/pathnames";
+import { translatedPathnames } from "./utils/pathnames";
+import { prerenderRoutes } from "utils/prerendered";
 
 export default defineConfig({
   plugins: [
@@ -18,13 +19,20 @@ export default defineConfig({
       strategy: ["url", "cookie", "preferredLanguage", "baseLocale"],
       urlPatterns: translatedPathnames,
     }),
-    devtools(),
-    // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
     tailwindcss(),
-    tanstackStart(),
+    tanstackStart({
+      pages: prerenderRoutes,
+    }),
     solidPlugin({ ssr: true }),
+
+    compression({
+      algorithm: "brotliCompress",
+      ext: ".br",
+      threshold: 10240,
+      deleteOriginFile: false,
+    }),
   ],
 });

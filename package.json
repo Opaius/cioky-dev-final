@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite build",
+    "paraglide:compile": "paraglide-js compile",
+    "build": "npm run paraglide:compile && vite build",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",
@@ -30,7 +31,9 @@
     "solid-js": "^1.9.9",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.0.6",
+    "terser": "^5.44.1",
     "vite": "^7.1.7",
+    "vite-plugin-compression": "^0.5.1",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {

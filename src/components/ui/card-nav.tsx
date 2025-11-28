@@ -10,7 +10,7 @@ import {
   untrack,
 } from "solid-js";
 import { LucideArrowUpRight } from "lucide-solid";
-import { gsap } from "gsap";
+import gsap from "gsap/gsap-core";
 import { createDeviceSize } from "@/utils/createDeviceSize";
 import { cn } from "@/utils/cn";
 import type { Accessor, JSXElement, ParentComponent } from "solid-js";
@@ -208,7 +208,7 @@ export const CardNav: ParentComponent<CardNavProps> = (props) => {
         <div class="absolute inset-x-0 top-0 z-2 flex h-[60px] items-center justify-between p-2 pl-[1.1rem]">
           <div class="order-1 flex items-center">{props.logo}</div>
           <div
-            class="group  flex h-full cursor-pointer flex-col items-center justify-center gap-1.5 order-1"
+            class="group order-1 flex h-full cursor-pointer flex-col items-center justify-center gap-1.5"
             role="button"
             aria-label={isOpen() ? "Close menu" : "Open menu"}
             tabIndex={0}

@@ -25,7 +25,6 @@ const GradientText: ParentComponent<GradientTextProps> = (props) => {
   // Computed style for the gradient
   const gradientStyle = () => {
     const resolvedColors = merged.colors.map(getComputedColor);
-    console.log(resolvedColors);
     return {
       "background-image": `linear-gradient(to right, ${resolvedColors.join(", ")})`,
       "animation-duration": `${merged.animationSpeed}s`,
@@ -50,20 +49,20 @@ const GradientText: ParentComponent<GradientTextProps> = (props) => {
       </style>
       <div
         class={cn(
-          "relative justify-center font-medium backdrop-blur transition-shadow duration-500 ",
+          "relative justify-center font-medium backdrop-blur transition-shadow duration-500",
           merged.class,
         )}
       >
         <Show when={merged.showBorder}>
           <div
-            class="absolute inset-0 bg-cover z-0 pointer-events-none gradient-text-anim"
+            class="gradient-text-anim pointer-events-none absolute inset-0 z-0 bg-cover"
             style={{
               ...gradientStyle(),
               "background-size": "300% 100%",
             }}
           >
             <div
-              class="absolute inset-0 bg-black  z-[-1]"
+              class="absolute inset-0 z-[-1] bg-black"
               style={{
                 width: "calc(100% - 2px)",
                 height: "calc(100% - 2px)",
@@ -75,7 +74,7 @@ const GradientText: ParentComponent<GradientTextProps> = (props) => {
           </div>
         </Show>
         <div
-          class="inline-block relative z-2 text-transparent bg-cover gradient-text-anim"
+          class="gradient-text-anim relative z-2 inline-block bg-cover text-transparent"
           style={{
             ...gradientStyle(),
             "background-clip": "text",
