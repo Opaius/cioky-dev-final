@@ -1,4 +1,3 @@
-import { BentoSection } from "@/components/bento-section";
 import { HeaderNav } from "@/components/header-nav";
 import { HeroSection } from "@/components/hero-section";
 import {
@@ -9,6 +8,8 @@ import { createFileRoute } from "@tanstack/solid-router";
 import { m } from "@/paraglide/messages";
 import { generateMetaTags } from "@/utils/SEO/openGraph";
 import { getLocale } from "@/paraglide/runtime";
+import { lazy } from "solid-js";
+import { Suspense } from "solid-js";
 export const Route = createFileRoute("/")({
   component: App,
   head: () => {
@@ -26,6 +27,8 @@ export const Route = createFileRoute("/")({
   },
 });
 
+const BentoSection = lazy(() => import("@/components/bento-section"));
+
 function App() {
   return (
     <div>
@@ -33,7 +36,9 @@ function App() {
       <BgController>
         <HeroSection />
         <BgContainer bgEnd="var(--color-primary)">
-          <BentoSection />
+          <Suspense>
+            <BentoSection />
+          </Suspense>
         </BgContainer>
       </BgController>
     </div>

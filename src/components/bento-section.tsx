@@ -5,7 +5,7 @@ import {
   LucideTrendingUp,
 } from "lucide-solid";
 import { m } from "@/paraglide/messages";
-export function BentoSection() {
+export default function BentoSection() {
   return (
     <div class="grid w-full place-items-center">
       <div class="text-text font-space-grotesk grid max-w-4xl auto-rows-auto grid-cols-1 gap-4 p-8 text-center text-pretty *:size-full *:rounded-xl *:p-6 *:transition-all *:hover:scale-105 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3">
