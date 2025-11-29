@@ -18,6 +18,7 @@ export const Route = createRootRouteWithContext()({
   head: () => ({
     links: [
       { rel: "stylesheet", href: styleCss },
+      { rel: "preconnect", href: "/" },
       {
         rel: "preload",
         href: fontsCss,
