@@ -19,18 +19,10 @@ export const Route = createRootRouteWithContext()({
     links: [
       { rel: "stylesheet", href: styleCss },
       { rel: "preconnect", href: "/" },
-      {
-        rel: "preload",
-        href: fontsCss,
-        as: "style",
-      },
+
       {
         rel: "stylesheet",
         href: fontsCss,
-        media: "print",
-        onLoad: (e) => {
-          (e.currentTarget as HTMLLinkElement).media = "all";
-        },
       },
     ],
   }),
