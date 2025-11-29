@@ -18,7 +18,19 @@ export const Route = createRootRouteWithContext()({
   head: () => ({
     links: [
       { rel: "stylesheet", href: styleCss },
-      { rel: "stylesheet", href: fontsCss },
+      {
+        rel: "preload",
+        href: fontsCss,
+        as: "style",
+      },
+      {
+        rel: "stylesheet",
+        href: fontsCss,
+        media: "print",
+        onLoad: (e) => {
+          (e.currentTarget as HTMLLinkElement).media = "all";
+        },
+      },
     ],
   }),
   shellComponent: RootComponent,

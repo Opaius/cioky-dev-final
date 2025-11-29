@@ -36,14 +36,27 @@ const GradientText: ParentComponent<GradientTextProps> = (props) => {
       <style>
         {`
           .gradient-text-anim {
-            animation-name: gradient-text-keyframes;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            position: relative;
+            display: inline-block;
+            color: transparent;
           }
-          @keyframes gradient-text-keyframes {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+          .gradient-text-anim::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--your-gradient);
+            background-size: 200% 100%;
+            animation: gradient-slide 3s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0);
+                    mask: linear-gradient(#fff 0 0);
+            z-index: -1; /* or 1 depending on your text setup */
+          }
+
+          @keyframes gradient-slide {
+            0%   { transform: translateX(0); }
+            50%  { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
           }
         `}
       </style>

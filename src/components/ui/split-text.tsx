@@ -12,8 +12,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText as GSAPSplitText } from "gsap/SplitText";
 import type { JSX, ParentComponent } from "solid-js";
 
-gsap.registerPlugin(ScrollTrigger, GSAPSplitText);
-
 export interface SplitTextProps {
   class?: string;
   delay?: number;
@@ -62,6 +60,7 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
   // Stabilize config objects to prevent unnecessary re-runs
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger, GSAPSplitText);
     if (document.fonts.status === "loaded") {
       setFontsLoaded(true);
     } else {

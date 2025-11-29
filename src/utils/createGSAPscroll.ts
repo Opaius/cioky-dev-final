@@ -2,11 +2,6 @@ import { batch, createSignal, onCleanup, onMount } from "solid-js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 interface ScrollState {
   progress: number;
   scroll: number;
@@ -22,6 +17,8 @@ export function createGsapScroll(): ScrollState {
   let scrollTrigger: ScrollTrigger | null = null;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     if (typeof ScrollTrigger === "undefined") {
       console.warn("GSAP ScrollTrigger is not available");
       return;
