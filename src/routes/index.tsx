@@ -10,6 +10,8 @@ import { generateMetaTags } from "@/utils/SEO/openGraph";
 import { getLocale } from "@/paraglide/runtime";
 import { lazy } from "solid-js";
 import { Suspense } from "solid-js";
+import ProjectsSection from "@/components/projects-section";
+import ToolsSection from "@/components/tools-section";
 export const Route = createFileRoute("/")({
   component: App,
   head: () => {
@@ -38,6 +40,12 @@ function App() {
         <BgContainer bgEnd="var(--color-primary)">
           <Suspense>
             <BentoSection />
+            <ProjectsSection />
+          </Suspense>
+        </BgContainer>
+        <BgContainer bgEnd="var(--color-secondary)">
+          <Suspense>
+            <ToolsSection />
           </Suspense>
         </BgContainer>
       </BgController>

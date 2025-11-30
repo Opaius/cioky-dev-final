@@ -66,17 +66,24 @@ export function HeaderNav() {
   const [isOpen, setIsOpen] = createSignal(false);
   const additionalClassName = createMemo(() => {
     if (scroll.progress == 0 && !isOpen())
-      return "bg-transparent w-[80%] max-w-full shadow-none  ";
+      return "bg-transparent w-[80%] max-w-full shadow-none";
     if (scroll.progress == 0 && isOpen()) return "bg-card w-[80%] max-w-full ";
+    return undefined;
+  });
+  const basedOnDirection = createMemo(() => {
+    if (scroll.direction === "down")
+      return "-translate-y-full group-hover:translate-y-0 group-focus:translate-y-0 group-focus-within:translate-y-0";
+    if (scroll.direction === "up") return "translate-y-0";
     return undefined;
   });
   return (
     <CardNav
       logo={<span class="logo">cioky.dev</span>}
       class={cn(
-        "transition-[background-color,width,max-width] duration-500",
+        "transition-[background-color,width,max-width,translate] duration-500",
         additionalClassName(),
-        "hover:bg-card text-text", // This will inherit the transition from transition-all
+        basedOnDirection(),
+        "hover:bg-card text-text",
       )}
       items={items}
       isOpen={isOpen}

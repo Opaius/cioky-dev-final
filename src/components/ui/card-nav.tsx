@@ -195,7 +195,7 @@ export const CardNav: ParentComponent<CardNavProps> = (props) => {
 
   return (
     <div
-      class={cn("fixed top-[1.2em] z-99 flex w-full justify-center")}
+      class={cn("group fixed top-0 z-99 flex w-full justify-center py-[1.2em]")}
       ref={containerRef}
     >
       <nav

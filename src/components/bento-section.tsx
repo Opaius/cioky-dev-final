@@ -8,6 +8,9 @@ import { m } from "@/paraglide/messages";
 export default function BentoSection() {
   return (
     <div class="grid w-full place-items-center">
+      <h1 class="text-text font-roboto-serif mb-4 text-center text-4xl font-bold">
+        {m.bento_title()}
+      </h1>
       <div class="text-text font-space-grotesk grid max-w-4xl auto-rows-auto grid-cols-1 gap-4 p-8 text-center text-pretty *:size-full *:rounded-xl *:p-6 *:transition-all *:hover:scale-105 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3">
         <div class="bg-card gap:2.5 flex flex-col items-center justify-center sm:col-span-2 sm:flex-row sm:gap-8 md:col-span-1 md:row-span-2 md:flex-col">
           <LucideFeather class="size-14 shrink-0 sm:size-21" />

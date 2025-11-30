@@ -14,6 +14,7 @@
   "hero_button_resume": "Vezi CV-ul și Competențele Mele",
   "hero_button_start_project": "Începe Proiectul Tău Acum",
 
+  "bento_title": "De ce un dezvoltator independent ?",
   "bento_1_title": "Concentrare Dedicată, Tehnologii Moderne",
   "bento_1_description": "Deși nu sunt un dezvoltator \"Senior\" cu 20 de ani în domeniu, aduc un maxim de concentrare și o cunoaștere actualizată a celor mai noi și eficiente tehnologii. Primești cod curat și de încredere fără să plătești pentru experiență învechită inutilă.",
   "bento_2_title": "Zero Cheltuieli Suplimentare = Economii Reale",
@@ -21,5 +22,96 @@
   "bento_3_title": "Livrare Simplificată, Predictibilă",
   "bento_3_description": "Definim clar scopul de la început, iar eu îmi gestionez timpul pentru a asigura o lansare rapidă, care este de încredere, nu doar grăbită.",
   "bento_4_title": "Soluții Care Cresc Odată cu Tine",
-  "bento_4_description": "Fie că ai nevoie de un site de marketing simplu și solid sau de o aplicație web de dimensiuni medii care necesită gestionare complexă a datelor, construiesc platforme suficient de flexibile pentru a-ți îndeplini nevoile curente și pentru a scala atunci când afacerea ta este pregătită."
+  "bento_4_description": "Fie că ai nevoie de un site de marketing simplu și solid sau de o aplicație web de dimensiuni medii care necesită gestionare complexă a datelor, construiesc platforme suficient de flexibile pentru a-ți îndeplini nevoile curente și pentru a scala atunci când afacerea ta este pregătită.",
+
+  "tools_title": "Stiva Tehnologică Modernă pe care o Stăpânesc",
+  "tools_subtitle": "Un set de instrumente curat pentru viteză și scalabilitate.",
+  "tools_instruction": "Treci cu mouse-ul/Apasă pe orice card pentru a vedea cum îl folosesc.",
+  "tools_hello": "Salut !",
+  "tools_instruction_fallback": "Treci cu mouse-ul/Apasă pe un instrument pentru mai multe detalii",
+  "tools_experience_level": "Nivel de Experiență",
+
+  "tools_group_frontend": "Frontend & UI",
+  "tools_group_data": "Date & Stare",
+  "tools_group_languages": "Limbaje",
+  "tools_group_runtime": "Runtime & DevOps",
+  "tools_group_design": "Design & Instrumente",
+
+  "tool_solidjs_title": "SolidJS",
+  "tool_solidjs_description": "M-am îndrăgostit de SolidJS și plănuiesc să îmi bazez toate proiectele viitoare pe el. M-am gândit și să îmi fac propria bibliotecă de componente",
+
+  "tool_tanstack_start_title": "Tanstack Start",
+  "tool_tanstack_start_description": "Nu mulți oameni știu asta, dar Tanstack Start este și el compatibil cu SolidJS. Plănuiesc să îl folosesc alături de solidjs pentru aplicații full-stack.",
+
+  "tool_tailwindcss_title": "TailwindCSS",
+  "tool_tailwindcss_description": "Aceasta este principala mea metodă de stilizare a proiectelor, deși folosesc uneori stiluri inline, doar pentru stări reactive.",
+
+  "tool_react_title": "React",
+  "tool_react_description": "Am început cu React, poate în 2022, a fost biblioteca mea preferată datorită ecosistemului extins și suportului comunității, dar era prea mult bloatware pentru mine.",
+
+  "tool_nextjs_title": "Next.js",
+  "tool_nextjs_description": "Ei bine, după ce am învățat React, Next.js a fost următorul meu pas. L-am folosit pentru prima mea aplicație full-stack. A fost o experiență grozavă, dar din nou, mult bloat.",
+
+  "tool_convex_title": "Convex",
+  "tool_convex_description": "Tocmai am început să folosesc Convex și îl iubesc, au primit recent o finanțare de 22 de milioane de dolari și sunt entuziasmat să văd ce pot face în continuare.",
+
+  "tool_tanstack_query_title": "Tanstack Query",
+  "tool_tanstack_query_description": "Din nou, echipa de la Tanstack a făcut o versiune SolidJS a acestuia, așa că o voi folosi acolo unde este necesar.",
+
+  "tool_drizzle_title": "Drizzle ORM",
+  "tool_drizzle_description": "Chiar când am început să lucrez cu baze de date, am început să folosesc Drizzle și mi-a plăcut foarte mult, este un ORM grozav pentru TypeScript.",
+
+  "tool_supabase_title": "Supabase",
+  "tool_supabase_description": "Am folosit Supabase pentru câteva proiecte, așa că sunt puțin familiarizat cu el, dar nu mi-a prea plăcut.",
+
+  "tool_postgresql_title": "PostgreSQL",
+  "tool_postgresql_description": "Am folosit asta atât în facultate, cât și în câteva proiecte. Este un sistem de baze de date puternic și flexibil. Dar vreau să construiesc aplicații rapid, așa că voi folosi în principal Convex",
+
+  "tool_typescript_title": "TypeScript",
+  "tool_typescript_description": "Ei bine, ce să zic, îl folosesc pentru tot, uneori devine puțin încărcat dar este grozav.",
+
+  "tool_javascript_title": "JavaScript",
+  "tool_javascript_description": "Ei bine, nu pot spune că îl folosesc, dar, totul este construit pe el, așa că îl folosesc?",
+
+  "tool_css_title": "CSS",
+  "tool_css_description": "Ei bine, am început cu CSS, și așa, este doar, foarte ușor de folosit și flexibil, și este foarte puternic.",
+
+  "tool_romanian_title": "Română",
+  "tool_romanian_description": "Ei bine, sunt român și cred că îl știu :)).",
+
+  "tool_english_title": "Engleză",
+  "tool_english_description": "Am obținut un certificat C1 la Cambridge English Language Assessment, așa că pot cu siguranță să am o conversație despre jocuri cu tine.",
+
+  "tool_bun_title": "Bun",
+  "tool_bun_description": "Folosesc bun peste tot, este rapid și eficient, atât ca manager de pachete, cât și ca runtime.",
+
+  "tool_github_title": "Github",
+  "tool_github_description": "Folosesc Github de atât de mult timp și simt că încă nu știu cum să îl folosesc. Dar îmi place foarte mult.",
+
+  "tool_git_title": "Git",
+  "tool_git_description": "Adică, nu poți avea GitHub fără Git, nu-i așa?",
+
+  "tool_nodejs_title": "Node.js",
+  "tool_nodejs_description": "Ei bine, Node.js este Node.js, este încă folosit pentru multe lucruri, dar prefer Bun.",
+
+  "tool_turborepo_title": "Turborepo",
+  "tool_turborepo_description": "Iubesc ideea de Turborepo, cred că după ce îmi voi face biblioteca de componente, o voi folosi pentru build-uri mai rapide.",
+
+  "tool_pnpm_title": "pnpm",
+  "tool_pnpm_description": "Al doilea meu manager de pachete a fost pnpm, este rapid și eficient. Dar prefer Bun.",
+
+  "tool_npm_title": "npm",
+  "tool_npm_description": "Ei bine, acesta a fost primul manager de pachete pe care l-am folosit, așa că încă îmi este drag.",
+
+  "tool_figma_title": "Figma",
+  "tool_figma_description": "Folosesc Figma foarte mult, pentru design UI/UX, prototipare și sisteme de design. Este puternic, dar este și scump.",
+
+  "tool_zed_title": "Zed",
+  "tool_zed_description": "Am început să îl folosesc doar recent, îl iubesc, agentul Zed este doar, uimitor, încă mai are nevoie de câteva actualizări pe Windows.",
+
+  "tool_vscode_title": "VScode",
+  "tool_vscode_description": "Cred că este cel mai bun editor pentru dezvoltare web, multe extensii și ușor de folosit. În plus este gratuit, dar copilot-ul este eh, cam scump.",
+
+  "tool_intellij_title": "IntelliJ IDEA",
+  "tool_intellij_description": "L-am folosit pentru dezvoltare Java în facultate, am încercat și să fac câteva mod-uri pentru minecraft :)"
 }

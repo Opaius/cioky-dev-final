@@ -1,110 +1,127 @@
-/* roboto-serif-200 - latin */
+/* space-grotesk-300 - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-ext-300.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* space-grotesk-regular - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-ext-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* space-grotesk-500 - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-ext-500.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* space-grotesk-600 - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-ext-600.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* space-grotesk-700 - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-ext-700.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* roboto-serif-100 - latin-ext */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-weight: 100;
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-100.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* roboto-serif-200 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 200;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-200.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-200.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-300 - latin */
+/* roboto-serif-300 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 300;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-300.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-300.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-regular - latin */
+/* roboto-serif-regular - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-500 - latin */
+/* roboto-serif-500 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 500;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-500.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-600 - latin */
+/* roboto-serif-600 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 600;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-600.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-700 - latin */
+/* roboto-serif-700 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-700.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-800 - latin */
+/* roboto-serif-800 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 800;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-800.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-800.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-/* roboto-serif-900 - latin */
+/* roboto-serif-900 - latin-ext */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: "Roboto Serif";
   font-style: normal;
   font-weight: 900;
-  src: url("/fonts/roboto/roboto-serif-v17-latin-900.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-/* space-grotesk-300 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 300;
-  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-300.woff2")
-    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* space-grotesk-regular - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-regular.woff2")
-    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* space-grotesk-500 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-500.woff2")
-    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* space-grotesk-600 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 600;
-  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-600.woff2")
-    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* space-grotesk-700 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/space-grotesk/space-grotesk-v22-latin-700.woff2")
+  src: url("/fonts/roboto-serif/roboto-serif-v17-latin-ext-900.woff2")
     format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

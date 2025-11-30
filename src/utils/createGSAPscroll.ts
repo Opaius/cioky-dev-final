@@ -5,6 +5,7 @@ import gsap from "gsap";
 interface ScrollState {
   progress: number;
   scroll: number;
+  direction: "up" | "down" | "none";
 }
 
 /**
@@ -14,6 +15,9 @@ interface ScrollState {
 export function createGsapScroll(): ScrollState {
   const [progress, setProgress] = createSignal<number>(0);
   const [scroll, setScroll] = createSignal<number>(0);
+  const [direction, setDirection] = createSignal<"up" | "down" | "none">(
+    "none",
+  );
   let scrollTrigger: ScrollTrigger | null = null;
 
   onMount(() => {
@@ -31,6 +35,13 @@ export function createGsapScroll(): ScrollState {
         batch(() => {
           setProgress(Number(self.progress.toFixed(2))); // Limit to 2 decimal places
           setScroll(Math.round(self.scroll())); // Round to nearest pixel
+          setDirection(
+            self.direction === 1
+              ? "down"
+              : self.direction === -1
+                ? "up"
+                : "none",
+          );
         });
       },
     });
@@ -48,6 +59,9 @@ export function createGsapScroll(): ScrollState {
     },
     get scroll() {
       return scroll();
+    },
+    get direction() {
+      return direction();
     },
   };
 }
