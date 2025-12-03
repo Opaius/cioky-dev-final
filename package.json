@@ -6,7 +6,7 @@
     "dev": "vite dev --port 3000",
     "paraglide:compile": "paraglide-js compile",
     "optimize:images": "bun run scripts/optimize-images.js",
-    "build": "npm run paraglide:compile && npm run optimize:images && vite build",
+    "build": "bun run paraglide:compile && vite build",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",

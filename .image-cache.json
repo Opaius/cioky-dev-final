@@ -1,114 +1,114 @@
 {
   "tools-icons/romanian.svg": {
-    "hash": "e271c19e671a2cd4c229795d02802eb0",
-    "timestamp": "2025-12-03T16:19:37.808Z"
+    "hash": "37909d2c17093be56ed7f000cb2f59e9",
+    "timestamp": "2025-12-03T16:36:43.882Z"
   },
   "tools-icons/figma.svg": {
-    "hash": "879b6292ec71fbe5a933d65334da25a5",
-    "timestamp": "2025-12-03T16:19:37.813Z"
+    "hash": "e60fe4de313c83a45d162f964379124e",
+    "timestamp": "2025-12-03T16:36:43.882Z"
   },
   "tools-icons/node-js.svg": {
-    "hash": "c61a8da8710db4f76e2d5b6392ae3c74",
-    "timestamp": "2025-12-03T16:19:37.817Z"
+    "hash": "de98264f01657a339f0f18676ef222f5",
+    "timestamp": "2025-12-03T16:36:43.883Z"
   },
   "tools-icons/css.svg": {
-    "hash": "adf68d9c0a27dd6b541ebf945fe20dbb",
-    "timestamp": "2025-12-03T16:19:37.830Z"
+    "hash": "d4fa98609f324ef0bfc2d8d1c571501a",
+    "timestamp": "2025-12-03T16:36:43.883Z"
   },
   "tools-icons/english.svg": {
-    "hash": "96b0e0a2ae34623fefafcfbf6f53a3da",
-    "timestamp": "2025-12-03T16:19:37.835Z"
+    "hash": "8ec8bcf273d8575c55ec4136cd365031",
+    "timestamp": "2025-12-03T16:36:43.915Z"
   },
   "tools-icons/github.svg": {
-    "hash": "1004615a9f5a31c963763b46fc749609",
-    "timestamp": "2025-12-03T16:19:37.838Z"
+    "hash": "7df592157592a167d76b285df6f7b197",
+    "timestamp": "2025-12-03T16:36:43.914Z"
   },
   "tools-icons/vscode.svg": {
-    "hash": "200180bf2ce6a88fcca63bbe291952fb",
-    "timestamp": "2025-12-03T16:19:37.861Z"
+    "hash": "be13e670c912f12a139a97abb35d7dd8",
+    "timestamp": "2025-12-03T16:36:43.915Z"
   },
   "tools-icons/supabase.svg": {
-    "hash": "dd5def408893e8a4b548798b97e6b3ee",
-    "timestamp": "2025-12-03T16:19:37.864Z"
+    "hash": "8c3ce0608a0f1a57231044014b064477",
+    "timestamp": "2025-12-03T16:36:43.915Z"
   },
   "tools-icons/npm.svg": {
-    "hash": "dfb8c0782d0dd5e14f4fd740dc585bd6",
-    "timestamp": "2025-12-03T16:19:37.867Z"
+    "hash": "cbddf0b0fb6247a8b72019ed64b1e4dc",
+    "timestamp": "2025-12-03T16:36:43.937Z"
   },
   "tools-icons/zed.svg": {
-    "hash": "db837c07b78a4ada007a3bf3827b0bd9",
-    "timestamp": "2025-12-03T16:19:37.869Z"
+    "hash": "cd46f5b8a81dd456e42e830f565413a7",
+    "timestamp": "2025-12-03T16:36:43.938Z"
   },
   "tools-icons/postgresql.svg": {
-    "hash": "aee070bdddae41f7d54949fa8e9f641b",
-    "timestamp": "2025-12-03T16:19:37.876Z"
+    "hash": "95f654b2293551919d1114e1598a947a",
+    "timestamp": "2025-12-03T16:36:43.938Z"
   },
   "tools-icons/convex.svg": {
-    "hash": "69fe86a0f00d9cf36debb1b41555eb69",
-    "timestamp": "2025-12-03T16:19:37.880Z"
+    "hash": "ec46268d570523096f054fb74dd4b7f4",
+    "timestamp": "2025-12-03T16:36:43.938Z"
   },
   "tools-icons/bun.svg": {
-    "hash": "9ce63cc10cafd95fd9f03a330f927b28",
-    "timestamp": "2025-12-03T16:19:37.883Z"
+    "hash": "91d722d3b8530d59b1dfb87a794a1b7d",
+    "timestamp": "2025-12-03T16:36:43.953Z"
   },
   "tools-icons/typescript.svg": {
-    "hash": "60a81a18c7f30c25a9ee28ac82d2351e",
-    "timestamp": "2025-12-03T16:19:37.887Z"
+    "hash": "ae7cd05d33591b74808b0a800c6239ea",
+    "timestamp": "2025-12-03T16:36:43.953Z"
   },
   "tools-icons/tailwind-css.svg": {
-    "hash": "e2c6899914f79c7dd2d31aad8a472aac",
-    "timestamp": "2025-12-03T16:19:37.893Z"
+    "hash": "fa82bc8f92c7f04b4962c3ba9deabd1b",
+    "timestamp": "2025-12-03T16:36:43.953Z"
   },
   "tools-icons/turborepo.svg": {
-    "hash": "1506360865ff0c9957d4ddaaee91ec89",
-    "timestamp": "2025-12-03T16:19:37.896Z"
+    "hash": "95c5412bdbf4dfc17b6dd3d738e14d92",
+    "timestamp": "2025-12-03T16:36:43.953Z"
   },
   "tools-icons/javascript.svg": {
-    "hash": "7ac89a4ef14f5d05f65a8586017ccf65",
-    "timestamp": "2025-12-03T16:19:37.900Z"
+    "hash": "a4abd8f92acd396701be83e1ab4c0880",
+    "timestamp": "2025-12-03T16:36:43.964Z"
   },
   "tools-icons/drizzle.svg": {
-    "hash": "05ae3c38ce800c2e60767dbb61142526",
-    "timestamp": "2025-12-03T16:19:37.903Z"
+    "hash": "944763c580dc5dba88705a4b7009745a",
+    "timestamp": "2025-12-03T16:36:43.965Z"
   },
   "tools-icons/solidjs.svg": {
-    "hash": "3a9d49546563fcf846efd68fdb3307d4",
-    "timestamp": "2025-12-03T16:19:37.905Z"
+    "hash": "db4c2a6e3312395f1586a3e899de9332",
+    "timestamp": "2025-12-03T16:36:43.965Z"
   },
   "tools-icons/pnpm.svg": {
-    "hash": "2d6edc4da14b9248f41f16274640b43c",
-    "timestamp": "2025-12-03T16:19:37.909Z"
+    "hash": "efe3149e099aaad684c3f8116a402ac9",
+    "timestamp": "2025-12-03T16:36:43.965Z"
   },
   "tools-icons/react.svg": {
-    "hash": "664d77b4d7aafcbb0a3e26d76fc5f317",
-    "timestamp": "2025-12-03T16:19:37.911Z"
+    "hash": "410f8f51eb7f7d0f788b1a85643f7eb6",
+    "timestamp": "2025-12-03T16:36:43.989Z"
   },
   "tools-icons/intellij-idea.svg": {
-    "hash": "38d80ddde8c8f800bffaecf5f647a2f3",
-    "timestamp": "2025-12-03T16:19:37.913Z"
+    "hash": "ccad7c3834b86304c4d5629acf1d2ea1",
+    "timestamp": "2025-12-03T16:36:43.990Z"
   },
   "tools-icons/tanstack-start.svg": {
-    "hash": "df37000f20b0f67c28a010344592dc23",
-    "timestamp": "2025-12-03T16:19:37.918Z"
+    "hash": "038455a2565f48045e9da9ec04b6fddc",
+    "timestamp": "2025-12-03T16:36:43.990Z"
   },
   "tools-icons/next-js.svg": {
-    "hash": "7c4df38ac804debc142f6345c98f6ec2",
-    "timestamp": "2025-12-03T16:19:37.920Z"
+    "hash": "a58db63156ec57668c558e92f2d626fa",
+    "timestamp": "2025-12-03T16:36:43.989Z"
   },
   "tools-icons/git.svg": {
-    "hash": "e5e3b7d35c51fedeaf393561d09e2d53",
-    "timestamp": "2025-12-03T16:19:37.926Z"
+    "hash": "8051c5c8e93356c30f07d327036ebe96",
+    "timestamp": "2025-12-03T16:36:43.998Z"
   },
   "og/ro-home.png": {
-    "hash": "4da74a0f492c2f5b01c2d1520a9899e7",
-    "timestamp": "2025-12-03T16:19:38.038Z"
+    "hash": "b729c1ccfa39e237867b9344e658adbd",
+    "timestamp": "2025-12-03T16:36:44.103Z"
   },
   "og/en-home.png": {
-    "hash": "8e90ec3a976815d9082dcd9dfe4dded3",
-    "timestamp": "2025-12-03T16:19:38.138Z"
+    "hash": "d694322ad424bdf18e9eceef2adce299",
+    "timestamp": "2025-12-03T16:36:44.113Z"
   },
   "first-project.webp": {
-    "hash": "d94dd8b3f255d835526f54c27b75a01a",
-    "timestamp": "2025-12-03T16:19:38.329Z"
+    "hash": "704a40c97aec961ad21042f5bb0ed42f",
+    "timestamp": "2025-12-03T16:36:44.429Z"
   }
 }

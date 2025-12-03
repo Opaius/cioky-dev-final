@@ -10,51 +10,55 @@ import { optimize } from "svgo";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Configuration
+// ==========================================
+// CONFIGURATION
+// ==========================================
 const CONFIG = {
-  // Source and destination directories
   sourceDir: path.join(__dirname, "..", "assets"),
   destDir: path.join(__dirname, "..", "public"),
-
-  // Cache file location
   cacheFile: path.join(__dirname, "..", ".image-cache.json"),
 
-  // Image formats to optimize (raster images will be converted to WebP)
-  imageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".tiff", ".bmp"],
+  // Concurrency: How many images to process at once.
+  // Higher = faster but uses more RAM. 4-8 is usually safe.
+  concurrency: 4,
 
-  // SVG extensions (keep as SVG)
+  imageExtensions: [".jpg", ".jpeg", ".png", ".gif", ".tiff", ".bmp", ".webp"],
   svgExtensions: [".svg"],
 
-  // Optimization settings
   optimization: {
-    // WebP settings (all raster images will be converted to WebP)
+    // WebP: The standard for modern web images
     webp: {
       quality: 80,
+      alphaQuality: 85,
       lossless: false,
       nearLossless: true,
-      alphaQuality: 85,
+      smartSubsample: true, // Reduces chroma subsampling artifacts
+      effort: 6, // 0-6 (6 is slowest but best compression)
+    },
+    // PNG: Used specifically for the 'og/' folder to maintain compatibility
+    png: {
+      quality: 80,
+      compressionLevel: 9, // Max compression
+      palette: true, // Quantize colors (huge savings for illustrations)
+      effort: 10, // 1-10 (10 is slowest but best compression)
     },
   },
 
-  // SVGO configuration
   svgoConfig: {
-    multipass: true,
+    multipass: true, // Run plugins multiple times
     plugins: [
       {
         name: "preset-default",
         params: {
           overrides: {
-            cleanupNumericValues: false,
-            cleanupIds: {
-              minify: false,
-              remove: false,
-            },
-            convertPathData: false,
+            cleanupNumericValues: { floatPrecision: 2 }, // Reduce precision
+            removeViewBox: false, // Usually safer to keep this true for scaling
+            removeUnknownsAndDefaults: true,
+            convertPathData: true,
           },
         },
       },
       "sortAttrs",
-      "removeViewBox",
       {
         name: "addAttributesToSVGElement",
         params: {
@@ -65,30 +69,38 @@ const CONFIG = {
   },
 };
 
-// Statistics
+// ==========================================
+// STATE & UTILS
+// ==========================================
 const stats = {
   totalImages: 0,
+  processed: 0, // Track processed to show progress
   optimized: 0,
   skipped: 0,
   errors: 0,
   totalSavings: 0,
 };
 
-// Cache structure
 let cache = {};
 
-// Load cache from file
+// Generate a hash of the current CONFIG object.
+// This ensures we re-run optimization if you change quality settings.
+const CONFIG_HASH = crypto
+  .createHash("md5")
+  .update(
+    JSON.stringify(CONFIG.optimization) + JSON.stringify(CONFIG.svgoConfig),
+  )
+  .digest("hex");
+
 async function loadCache() {
   try {
     const cacheData = await fs.readFile(CONFIG.cacheFile, "utf8");
     cache = JSON.parse(cacheData);
   } catch (error) {
-    // Cache file doesn't exist or is invalid
     cache = {};
   }
 }
 
-// Save cache to file
 async function saveCache() {
   try {
     await fs.writeFile(CONFIG.cacheFile, JSON.stringify(cache, null, 2));
@@ -97,52 +109,181 @@ async function saveCache() {
   }
 }
 
-// Get file hash (using file size and modification time for simplicity)
 async function getFileHash(filePath) {
   try {
     const stat = await fs.stat(filePath);
-    // Use size + mtime as a simple hash
     return crypto
       .createHash("md5")
-      .update(`${stat.size}-${stat.mtimeMs}`)
+      .update(`${stat.size}-${stat.mtimeMs}-${CONFIG_HASH}`)
       .digest("hex");
   } catch (error) {
     return null;
   }
 }
 
-// Check if file needs optimization
-async function needsOptimization(filePath, relativePath) {
-  const fileHash = await getFileHash(filePath);
-  if (!fileHash) return true;
-
-  const cached = cache[relativePath];
-  if (!cached) return true;
-
-  return cached.hash !== fileHash;
+function formatFileSize(bytes) {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
-// Update cache entry
-async function updateCache(filePath, relativePath) {
-  const fileHash = await getFileHash(filePath);
-  if (fileHash) {
-    cache[relativePath] = {
-      hash: fileHash,
-      timestamp: new Date().toISOString(),
+// ==========================================
+// OPTIMIZATION ENGINES
+// ==========================================
+
+async function optimizeRasterImage(filePath, destPath) {
+  try {
+    const relativePath = path.relative(CONFIG.sourceDir, filePath);
+    const isOgImage = relativePath.startsWith("og/"); // Check if it's an OpenGraph image
+
+    // Determine output format and settings
+    let finalDestPath = destPath;
+    let pipeline = sharp(filePath);
+    let optimizedBuffer;
+
+    if (isOgImage) {
+      // OG images must often be PNG/JPG, WebP support is spotty on some platforms
+      optimizedBuffer = await pipeline.png(CONFIG.optimization.png).toBuffer();
+    } else {
+      // Convert everything else to WebP
+      finalDestPath = destPath.replace(/\.[^/.]+$/, ".webp");
+      optimizedBuffer = await pipeline
+        .webp(CONFIG.optimization.webp)
+        .toBuffer();
+    }
+
+    const originalStats = await fs.stat(filePath);
+    const originalSize = originalStats.size;
+    const optimizedSize = optimizedBuffer.length;
+
+    await fs.writeFile(finalDestPath, optimizedBuffer);
+
+    return {
+      success: true,
+      originalSize,
+      optimizedSize,
+      savings: originalSize - optimizedSize,
+      destPath: finalDestPath,
     };
+  } catch (error) {
+    return { success: false, error: error.message };
   }
 }
 
-// Get all image files from assets directory
-async function getAllImageFiles(dir) {
-  const files = [];
+async function optimizeSvg(filePath, destPath) {
+  try {
+    const originalContent = await fs.readFile(filePath, "utf8");
+    const originalSize = Buffer.byteLength(originalContent, "utf8");
 
+    const result = optimize(originalContent, CONFIG.svgoConfig);
+
+    if (result.error) throw new Error(result.error);
+
+    const optimizedContent = result.data;
+    const optimizedSize = Buffer.byteLength(optimizedContent, "utf8");
+
+    await fs.writeFile(destPath, optimizedContent);
+
+    return {
+      success: true,
+      originalSize,
+      optimizedSize,
+      savings: originalSize - optimizedSize,
+      destPath,
+    };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
+// ==========================================
+// CORE LOGIC
+// ==========================================
+
+async function processImage(filePath) {
+  const relativePath = path.relative(CONFIG.sourceDir, filePath);
+  const ext = path.extname(filePath).toLowerCase();
+
+  // Logic to determine cache key (mimicking output filename logic)
+  const isOgImage = relativePath.startsWith("og/");
+  const cacheKey =
+    CONFIG.svgExtensions.includes(ext) || isOgImage
+      ? relativePath
+      : relativePath.replace(/\.[^/.]+$/, ".webp");
+
+  const destPath = path.join(CONFIG.destDir, relativePath);
+  await fs.mkdir(path.dirname(destPath), { recursive: true });
+
+  // 1. Check Cache
+  const currentHash = await getFileHash(filePath);
+  if (cache[cacheKey] && cache[cacheKey].hash === currentHash) {
+    // Verify file actually exists at destination
+    try {
+      // Correctly verify the DESTINATION file exists
+      const expectedDest =
+        CONFIG.svgExtensions.includes(ext) || isOgImage
+          ? destPath
+          : destPath.replace(/\.[^/.]+$/, ".webp");
+      await fs.access(expectedDest);
+
+      stats.skipped++;
+      // console.log(`⏭️  Skipped: ${relativePath}`); // Optional: Comment out for cleaner log
+      return;
+    } catch (e) {
+      // File missing from dest, proceed to optimize
+    }
+  }
+
+  // 2. Optimize
+  const start = Date.now();
+  let result;
+
+  if (CONFIG.svgExtensions.includes(ext)) {
+    result = await optimizeSvg(filePath, destPath);
+  } else {
+    result = await optimizeRasterImage(filePath, destPath);
+  }
+
+  const duration = Date.now() - start;
+
+  // 3. Handle Result
+  if (!result.success) {
+    console.error(`❌ Error processing ${relativePath}: ${result.error}`);
+    stats.errors++;
+  } else {
+    // Update Cache
+    cache[cacheKey] = {
+      hash: currentHash,
+      timestamp: new Date().toISOString(),
+    };
+
+    stats.optimized++;
+    stats.totalSavings += result.savings;
+
+    const percent =
+      result.originalSize > 0
+        ? ((result.savings / result.originalSize) * 100).toFixed(1)
+        : 0;
+
+    const color = result.savings > 0 ? "\x1b[32m" : "\x1b[33m"; // Green or Yellow
+    const reset = "\x1b[0m";
+
+    console.log(
+      `${color}✔ ${relativePath}${reset} ` +
+        `(${formatFileSize(result.originalSize)} -> ${formatFileSize(result.optimizedSize)}) ` +
+        `[${percent}% saved] in ${duration}ms`,
+    );
+  }
+}
+
+async function getAllFiles(dir) {
+  const files = [];
   async function walk(currentDir) {
     const entries = await fs.readdir(currentDir, { withFileTypes: true });
-
     for (const entry of entries) {
       const fullPath = path.join(currentDir, entry.name);
-
       if (entry.isDirectory()) {
         await walk(fullPath);
       } else {
@@ -156,221 +297,66 @@ async function getAllImageFiles(dir) {
       }
     }
   }
-
   await walk(dir);
   return files;
 }
 
-// Ensure destination directory exists
-async function ensureDestPath(filePath) {
-  const relativePath = path.relative(CONFIG.sourceDir, filePath);
-  const destPath = path.join(CONFIG.destDir, relativePath);
-  const destDir = path.dirname(destPath);
+// Simple concurrency limiter
+async function asyncPool(poolLimit, array, iteratorFn) {
+  const ret = [];
+  const executing = [];
+  for (const item of array) {
+    const p = Promise.resolve().then(() => iteratorFn(item));
+    ret.push(p);
 
-  await fs.mkdir(destDir, { recursive: true });
-  return destPath;
-}
-
-// Optimize raster image (convert to WebP, except for og/ folder)
-async function optimizeRasterImage(filePath, destPath) {
-  try {
-    const ext = path.extname(filePath).toLowerCase();
-    const originalStats = await fs.stat(filePath);
-    const originalSize = originalStats.size;
-
-    // Check if file is in og/ folder
-    const relativePath = path.relative(CONFIG.sourceDir, filePath);
-    const isOgImage = relativePath.startsWith("og/");
-
-    let optimizedBuffer;
-    let optimizedSize;
-    let finalDestPath = destPath;
-
-    if (isOgImage) {
-      // Keep PNG format for og/ folder images
-      const image = sharp(filePath);
-      optimizedBuffer = await image
-        .png({
-          quality: 85,
-          compressionLevel: 9,
-          palette: true,
-        })
-        .toBuffer();
-      optimizedSize = optimizedBuffer.length;
-    } else {
-      // Convert other raster images to WebP
-      finalDestPath = destPath.replace(/\.[^/.]+$/, ".webp");
-      const image = sharp(filePath);
-      optimizedBuffer = await image.webp(CONFIG.optimization.webp).toBuffer();
-      optimizedSize = optimizedBuffer.length;
+    if (poolLimit <= array.length) {
+      const e = p.then(() => executing.splice(executing.indexOf(e), 1));
+      executing.push(e);
+      if (executing.length >= poolLimit) {
+        await Promise.race(executing);
+      }
     }
-
-    await fs.writeFile(finalDestPath, optimizedBuffer);
-
-    const savings = originalSize - optimizedSize;
-    const percent = ((savings / originalSize) * 100).toFixed(1);
-
-    return {
-      success: true,
-      originalSize,
-      optimizedSize,
-      savings,
-      percent,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error.message,
-    };
   }
+  return Promise.all(ret);
 }
 
-// Optimize SVG
-async function optimizeSvg(filePath, destPath) {
-  try {
-    const originalContent = await fs.readFile(filePath, "utf8");
-    const originalSize = Buffer.byteLength(originalContent, "utf8");
+// ==========================================
+// MAIN
+// ==========================================
 
-    const result = optimize(originalContent, CONFIG.svgoConfig);
-    const optimizedContent = result.data;
-    const optimizedSize = Buffer.byteLength(optimizedContent, "utf8");
-
-    await fs.writeFile(destPath, optimizedContent);
-
-    const savings = originalSize - optimizedSize;
-    const percent = ((savings / originalSize) * 100).toFixed(1);
-
-    return {
-      success: true,
-      originalSize,
-      optimizedSize,
-      savings,
-      percent,
-      destPath,
-    };
-  } catch (error) {
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
-}
-
-// Format file size
-function formatFileSize(bytes) {
-  if (bytes === 0) return "0 B";
-
-  const k = 1024;
-  const sizes = ["B", "KB", "MB", "GB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-}
-
-// Main function
 async function main() {
-  console.log("🔍 Scanning for images in assets directory...\n");
+  console.log("🔍 Scanning assets...");
 
   try {
-    // Check if assets directory exists
-    try {
-      await fs.access(CONFIG.sourceDir);
-    } catch {
-      console.error(`Assets directory not found: ${CONFIG.sourceDir}`);
-      console.error("Please create an assets folder with your images.");
-      process.exit(1);
-    }
-
-    // Load cache
-    await loadCache();
-
-    // Get all image files
-    const imageFiles = await getAllImageFiles(CONFIG.sourceDir);
-    stats.totalImages = imageFiles.length;
-
-    if (stats.totalImages === 0) {
-      console.log("✅ No images found in assets directory.");
-      return;
-    }
-
-    console.log(`📁 Found ${stats.totalImages} image files.\n`);
-
-    // Process each image
-    for (const filePath of imageFiles) {
-      const relativePath = path.relative(CONFIG.sourceDir, filePath);
-      const ext = path.extname(filePath).toLowerCase();
-
-      // For raster images, check cache with appropriate extension
-      const isOgImage = relativePath.startsWith("og/");
-      const cacheKey = CONFIG.svgExtensions.includes(ext)
-        ? relativePath
-        : isOgImage
-          ? relativePath // Keep original extension for og/ images
-          : relativePath.replace(/\.[^/.]+$/, ".webp");
-
-      const destPath = await ensureDestPath(filePath);
-
-      process.stdout.write(`Processing ${relativePath}... `);
-
-      // Check if optimization is needed
-      if (!(await needsOptimization(filePath, cacheKey))) {
-        console.log("⏭️  Skipped (already optimized)");
-        stats.skipped++;
-        continue;
-      }
-
-      let result;
-
-      if (CONFIG.svgExtensions.includes(ext)) {
-        result = await optimizeSvg(filePath, destPath);
-      } else {
-        result = await optimizeRasterImage(filePath, destPath);
-      }
-
-      if (!result.success) {
-        console.log(`❌ Error: ${result.error}`);
-        stats.errors++;
-      } else {
-        // Update cache
-        await updateCache(filePath, cacheKey);
-
-        if (result.savings > 0) {
-          console.log(
-            `✅ Optimized! ${formatFileSize(result.originalSize)} → ${formatFileSize(result.optimizedSize)} (${result.percent}% saved)`,
-          );
-          stats.optimized++;
-          stats.totalSavings += result.savings;
-        } else {
-          console.log(`✅ Copied (no optimization needed)`);
-          stats.optimized++;
-        }
-      }
-    }
-
-    // Save cache
-    await saveCache();
-
-    // Print summary
-    console.log("\n📊 Optimization Summary:");
-    console.log("=".repeat(50));
-    console.log(`Total images: ${stats.totalImages}`);
-    console.log(`Optimized: ${stats.optimized}`);
-    console.log(`Skipped (cached): ${stats.skipped}`);
-    console.log(`Errors: ${stats.errors}`);
-
-    if (stats.totalSavings > 0) {
-      console.log(
-        `\n💾 Total space saved: ${formatFileSize(stats.totalSavings)}`,
-      );
-    }
-
-    console.log(`\n📁 Optimized images saved to: ${CONFIG.destDir}`);
-    console.log("✅ Image optimization complete!");
-  } catch (error) {
-    console.error("❌ Unexpected error:", error);
+    await fs.access(CONFIG.sourceDir);
+  } catch {
+    console.error(`❌ Source directory not found: ${CONFIG.sourceDir}`);
     process.exit(1);
   }
+
+  await loadCache();
+  const allFiles = await getAllFiles(CONFIG.sourceDir);
+  stats.totalImages = allFiles.length;
+
+  console.log(
+    `📁 Found ${stats.totalImages} images. Processing with concurrency: ${CONFIG.concurrency}...`,
+  );
+  console.log("=".repeat(60));
+
+  // Run with concurrency limit
+  await asyncPool(CONFIG.concurrency, allFiles, processImage);
+
+  await saveCache();
+
+  console.log("\n" + "=".repeat(60));
+  console.log("📊 OPTIMIZATION SUMMARY");
+  console.log("=".repeat(60));
+  console.log(`Total Images : ${stats.totalImages}`);
+  console.log(`Optimized    : ${stats.optimized}`);
+  console.log(`Cached       : ${stats.skipped}`);
+  console.log(`Errors       : ${stats.errors}`);
+  console.log(`Space Saved  : ${formatFileSize(stats.totalSavings)}`);
+  console.log("=".repeat(60));
 }
 
-// Run the script
-main();
+main().catch(console.error);
