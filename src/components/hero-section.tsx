@@ -6,9 +6,44 @@ import { Button } from "./ui/button";
 import { m } from "@/paraglide/messages";
 export function HeroSection() {
   const [startSecond, setStartSecond] = createSignal(false);
+
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Cioky - Independent Software Developer",
+    description: m.hero_description(),
+    url: "https://cioky.dev",
+    author: {
+      "@type": "Person",
+      name: "Cioky",
+      jobTitle: "Independent Software Developer",
+      knowsAbout: [
+        "Web Development",
+        "Full-Stack Development",
+        "SolidJS",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://cioky.dev?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
-    <div class="relative h-screen w-full">
-      <div class="absolute inset-0 h-full w-full">
+    <div
+      class="relative h-screen w-full"
+      role="banner"
+      aria-label="Main hero section"
+    >
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+
+      <div class="absolute inset-0 h-full w-full" aria-hidden="true">
         <Particles
           particleColors={[
             "var(--color-secondary)",
@@ -24,8 +59,11 @@ export function HeroSection() {
           disableRotation={false}
         />
       </div>
-      <div class="flex h-full w-full items-center justify-center px-8 sm:px-16">
-        <div class="flex w-full max-w-2xl flex-col items-center justify-center gap-3">
+
+      <main class="flex h-full w-full items-center justify-center px-8 sm:px-16">
+        <div class="flex w-full max-w-2xl flex-col items-center justify-center gap-3 text-center">
+          <h1 class="sr-only">Cioky - Independent Software Developer</h1>
+
           <SplitText
             class="text-text font-roboto-serif text-4xl font-bold md:text-5xl"
             ease="back.out(1.7)"
@@ -52,6 +90,7 @@ export function HeroSection() {
               </GradientText>
             </span>
           </SplitText>
+
           <SplitText
             class="text-text font-roboto-serif text-base text-pretty md:text-xl"
             ease="back.out(1.7)"
@@ -62,19 +101,38 @@ export function HeroSection() {
           >
             {m.hero_description()}
           </SplitText>
-          <div class="grid w-full grid-rows-2 gap-3 sm:grid-cols-2 md:grid-rows-1">
-            <Button class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold">
+
+          <div
+            class="grid w-full grid-rows-2 gap-3 sm:grid-cols-2 md:grid-rows-1"
+            aria-label="Primary actions"
+          >
+            <Button
+              class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold"
+              as="a"
+              href="/resume"
+              aria-label="View my resume and skills"
+            >
               {m.hero_button_resume()}
             </Button>
             <Button
               variant="secondary"
               class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold"
+              as="a"
+              href="/contact"
+              aria-label="Start your project with me"
             >
               {m.hero_button_start_project()}
             </Button>
           </div>
+
+          <div
+            class="text-text/70 font-space-grotesk mt-8 text-sm"
+            role="contentinfo"
+          >
+            <p>{m.hero_seo_expertise()}</p>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

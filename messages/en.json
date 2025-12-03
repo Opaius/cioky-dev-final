@@ -3,31 +3,31 @@
 
   "og_title": "Expert Software Development. Built Lean,",
   "og_gradient": "Priced Fairly.",
-  "og_button": "Check me now!",
+  "og_button": "Check it out!",
 
   "meta_homepage_title": "Independent Developer - Custom Apps & Honest Pricing",
   "meta_homepage_description": "Independent developer. No agency fees! I build custom apps and websites with high performance. Transparent pricing and fast delivery.",
 
   "hero_title": "Custom Solutions Directly Built. Expert Work,",
   "hero_gradient": "Honest Pricing.",
-  "hero_description": "I cut out the agency noise and focus entirely on building your custom website or app. Expect transparent pricing, dedicatedattention, and a straightforward path to launch.",
+  "hero_description": "I cut out the agency noise and focus entirely on building your custom website or app. Expect transparent pricing, dedicated attention, and a straightforward path to launch.",
   "hero_button_resume": "View My Resume & Skills",
   "hero_button_start_project": "Start Your Project Now",
 
-  "bento_title": "Why a freelancer ?",
+  "bento_title": "Why a freelancer?",
   "bento_1_title": "Dedicated Focus, Modern Stack",
-  "bento_1_description": "While I'm not a \"Senior\" developer with 20 years in the field, I bring maximum focus and an up-to-date knowledge of the latest, most efficient tech. You get reliable, clean code without paying forunnecessary legacy experience.",
+  "bento_1_description": "While I'm not a \"Senior\" developer with 20 years of legacy habits, I bring maximum focus and knowledge of the most efficient modern tech. You get reliable, clean code without paying for outdated experience.",
   "bento_2_title": "Zero Overhead = Real Savings",
   "bento_2_description": "I don't have an agency office or a sales team—your budget goes straight into the build, not into corporate costs.",
   "bento_3_title": "Streamlined, Predictable Delivery",
   "bento_3_description": "We define the scope clearly upfront, and I manage my time to ensure a rapid launch that's reliable, not just rushed.",
   "bento_4_title": "Solutions That Grow With You",
-  "bento_4_description": "Whether you need a simple, solid marketing site or a mid-size web app that requires complex data handling, I build platforms that are flexible enough to meet your current needs and scale when your business is ready.",
+  "bento_4_description": "Whether you need a simple, solid marketing site or a mid-size web app with complex data, I build platforms that meet your current needs and scale when your business is ready.",
 
   "tools_title": "The Modern Tech Stack I Master",
   "tools_subtitle": "A curated toolkit built for speed and scalability.",
   "tools_instruction": "Hover/Tap on any card to see how I use it.",
-  "tools_hello": "Hello !",
+  "tools_hello": "Hello!",
   "tools_instruction_fallback": "Hover/Tap on a tool for more details",
   "tools_experience_level": "Experience Level",
 
@@ -38,80 +38,98 @@
   "tools_group_design": "Design & Tools",
 
   "tool_solidjs_title": "SolidJS",
-  "tool_solidjs_description": "I fell in love with SolidJS, and i'm planning to base all my future projects on it. Also thought about making my own components library",
+  "tool_solidjs_description": "I fell in love with SolidJS, and I'm planning to base all my future projects on it. I'm even thinking about making my own component library.",
 
   "tool_tanstack_start_title": "Tanstack Start",
-  "tool_tanstack_start_description": "Not many people know this but, Tanstack Start is also compatible with SolidJS. I'm planning to use it alongside solidjs for full-stack applications.",
+  "tool_tanstack_start_description": "Not everyone knows this, but Tanstack Start is compatible with SolidJS. I use it alongside Solid for powerful full-stack applications.",
 
   "tool_tailwindcss_title": "TailwindCSS",
-  "tool_tailwindcss_description": "This is my primary way of styling my projects although i sometimes use inline styles, just for reactive states.",
+  "tool_tailwindcss_description": "This is my primary way of styling projects. I occasionally use inline styles, but only for reactive states.",
 
   "tool_react_title": "React",
-  "tool_react_description": "I started with React, maybe in 2022, it has been my go-to library because of its extensive ecosystem and community support, but it was just too much bloatware for me.",
+  "tool_react_description": "I started with React around 2022. It was my go-to library because of the ecosystem, but eventually, it felt like too much bloatware for my taste.",
 
   "tool_nextjs_title": "Next.js",
-  "tool_nextjs_description": "Well, after learning React, Next.js was my next step. I used it for my first full-stack application. It was a great experience, but again, alot of bloating.",
+  "tool_nextjs_description": "After React, Next.js was the natural next step. I used it for my first full-stack app. Great experience, but again—a lot of bloat.",
 
   "tool_convex_title": "Convex",
-  "tool_convex_description": "I just started using Convex, and I love it, they recently got a 22M dollar funding, and I'm excited to see what they can do next.",
+  "tool_convex_description": "I just started using Convex and I love it. They recently secured $22M in funding, so I'm excited to see their future features.",
 
   "tool_tanstack_query_title": "Tanstack Query",
-  "tool_tanstack_query_description": "Again, the team at Tanstack has made a SolidJS version of it so, i'm gonna use it where it's needed.",
+  "tool_tanstack_query_description": "The team at Tanstack made a SolidJS version of this, so I'm definitely going to use it where it's needed.",
 
   "tool_drizzle_title": "Drizzle ORM",
-  "tool_drizzle_description": "Right when i started working with databases, I started using Drizzle, and I really liked it, it's a great ORM for TypeScript.",
+  "tool_drizzle_description": "When I started working with databases, I picked up Drizzle immediately. I really like it—it's a fantastic ORM for TypeScript.",
 
   "tool_supabase_title": "Supabase",
-  "tool_supabase_description": "I've used Supabase for some projects, so I'm a little familliar with it but, I don't really liked it.",
+  "tool_supabase_description": "I've used Supabase for a few projects, so I'm familiar with it, but truthfully, I didn't love it.",
 
   "tool_postgresql_title": "PostgreSQL",
-  "tool_postgresql_description": "I've used this both in Uni, and some projects. It's a powerful and flexible database system. But i wanna build applications Fast, so i'm gonna mainly use Convex",
+  "tool_postgresql_description": "I used this in University and on personal projects. It's powerful, but I want to build fast—so I'm leaning more toward Convex.",
 
   "tool_typescript_title": "TypeScript",
-  "tool_typescript_description": "Well what can I say, i'm using it for everything, sometimes it gets a little bloated but it's great.",
+  "tool_typescript_description": "What can I say? I use it for everything. Sometimes it gets a little verbose, but the safety is worth it.",
 
   "tool_javascript_title": "JavaScript",
-  "tool_javascript_description": "Well, I can't say I use it, but, everything is built on it so, I am using it?",
+  "tool_javascript_description": "I can't say I use it directly, but everything is built on it... so I guess I am using it?",
 
   "tool_css_title": "CSS",
-  "tool_css_description": "Well I started with CSS, and so, it's just, very easy to use and flexible, and it's very powerful.",
+  "tool_css_description": "I started with raw CSS. It's flexible, powerful, and honestly very easy to use once you get the hang of it.",
 
   "tool_romanian_title": "Romanian",
-  "tool_romanian_description": "Well I'm Romanian, and I believe I know it :)).",
+  "tool_romanian_description": "Well, I'm Romanian, so I believe I know it :)).",
 
   "tool_english_title": "English",
-  "tool_english_description": "I've got a C1 certificate at the Cambridge English Language Assessment so, I can definetly have a conversation about games with you.",
+  "tool_english_description": "I have a C1 certificate from Cambridge, so I can definitely have a conversation about video games with you.",
 
   "tool_bun_title": "Bun",
-  "tool_bun_description": "I use bun everywhere, it's fast and efficient, both as a package manager, and as a runtime.",
+  "tool_bun_description": "I use Bun everywhere. It's incredibly fast and efficient, both as a package manager and a runtime.",
 
   "tool_github_title": "Github",
-  "tool_github_description": "I use Github for so long and I feel like I still don't know how to use it. But I like it alot.",
+  "tool_github_description": "I've used GitHub for ages and I still feel like I don't know half of it. But I like it a lot.",
 
   "tool_git_title": "Git",
-  "tool_git_description": "I mean, you can't have GitHub without Git can you?",
+  "tool_git_description": "I mean, you can't have GitHub without Git, can you?",
 
   "tool_nodejs_title": "Node.js",
-  "tool_nodejs_description": "Well, Node.js is Node.js, it's still used for alot of things, but I prefer Bun.",
+  "tool_nodejs_description": "Node.js is classic and still used for many things, but personally, I prefer Bun.",
 
   "tool_turborepo_title": "Turborepo",
-  "tool_turborepo_description": "I love the idea of Turborepo, i think after I make my Component library, i'll use this for faster builds.",
+  "tool_turborepo_description": "I love the idea of Turborepo. After I build my component library, I'll be using this for faster builds.",
 
   "tool_pnpm_title": "pnpm",
-  "tool_pnpm_description": "My second package manager was pnpm, it's fast and efficient. But I prefer Bun.",
+  "tool_pnpm_description": "My second package manager was pnpm. It's fast and efficient, though I still prefer Bun.",
 
   "tool_npm_title": "npm",
-  "tool_npm_description": "Well, this was the first package manager i used, so i'm still fond of it.",
+  "tool_npm_description": "This was the first package manager I ever used, so I'm still fond of it for nostalgic reasons.",
 
   "tool_figma_title": "Figma",
-  "tool_figma_description": "I use Figma alot, for UI/UX design, prototyping, and design systems. It's powerful, but it's also expensive.",
+  "tool_figma_description": "I use Figma heavily for UI/UX design and prototyping. It's powerful, though it is getting a bit pricey.",
 
   "tool_zed_title": "Zed",
-  "tool_zed_description": "I only started using it recently, I love it, the Zed agent is just, amazing, still needs some updates on Windows.",
+  "tool_zed_description": "I started using this recently and I love it. The Zed agent is amazing, though it still needs some updates on Windows.",
 
-  "tool_vscode_title": "VScode",
-  "tool_vscode_description": "I thinnk it's the best editor for web development, Alot of extensions and easy to use. Plus it's free, but the copilot is eh, sortof pricey.",
+  "tool_vscode_title": "VS Code",
+  "tool_vscode_description": "I think it's the best editor for web dev. Lots of extensions and easy to use. It's free, though Copilot is sort of pricey.",
 
   "tool_intellij_title": "IntelliJ IDEA",
-  "tool_intellij_description": "I used it for Java development in UNI, also tried making some minecraft mods :)"
+  "tool_intellij_description": "I used this for Java development in University. I also tried making some Minecraft mods with it :)",
+
+  "projects_title": "My Latest Projects",
+  "projects_pensiunea_title": "Pensiunea Perla Brazilor!",
+  "projects_pensiunea_description": "Live application built with Next.js and the Bun runtime for maximum performance. Full ownership includes Figma design, SEO, and robust multilingual features via Next-Intl. Proof of my end-to-end reliability.",
+  "projects_badge_fullstack": "FULL-STACK OWNERSHIP",
+  "projects_badge_design": "DESIGN",
+  "projects_badge_nextjs": "NEXT.JS",
+  "projects_badge_multilanguage": "MULTILANGUAGE",
+  "projects_badge_seo": "SEO",
+  "projects_badge_google_indexing": "GOOGLE INDEXING",
+
+  "projects_view_live": "View Live Application",
+  "projects_hi_there": "Hi there!",
+  "projects_more_coming": "More projects are arriving, so stay tuned!",
+
+  "hero_seo_expertise": "Expert in SolidJS, TypeScript, Tailwind CSS, and modern web development",
+  "projects_seo_description": "Showcasing my latest web development projects with modern technologies and best practices",
+  "bento_seo_description": "Discover the advantages of working directly with an independent developer"
 }

@@ -28,7 +28,8 @@ export const ToolComponent: Component<ToolComponentProps> = (props) => {
     }
   });
   return (
-    <div
+    <button
+      type="button"
       onMouseEnter={() => {
         if (toolContext.activeTool()?.title != props.title) {
           toolContext.setActiveTool({
@@ -46,15 +47,21 @@ export const ToolComponent: Component<ToolComponentProps> = (props) => {
         toolContext.activeTool()?.title == props.title &&
           "scale-110 shadow-[0px_0px_0px_5px_var(--color-primary)]",
       )}
+      aria-label={`${props.title} tool - ${props.experience}% experience`}
+      aria-pressed={toolContext.activeTool()?.title == props.title}
+      role="button"
+      tabindex="0"
     >
       <img
         src={props.logo}
         class={cn(
           props.variant == "language" ? "aspect-4/3 rounded-full" : "size-6",
         )}
+        alt={`${props.title} logo`}
+        loading="lazy"
       />
-      {props.title}
-    </div>
+      <span>{props.title}</span>
+    </button>
   );
 };
 
@@ -66,13 +73,36 @@ export type ToolGroupProps = {
 
 export const ToolGroup: Component<ToolGroupProps> = (props) => {
   return (
-    <div class={cn("bg-card flex flex-col gap-4 rounded-xl p-4", props.class)}>
-      <h3 class="font-roboto-serif before:bg-accent text-text flex text-xl font-bold before:mr-2 before:inline-block before:h-full before:w-2 before:rounded-full">
+    <article
+      class={cn("bg-card flex flex-col gap-4 rounded-xl p-4", props.class)}
+      itemscope
+      itemtype="https://schema.org/ItemList"
+    >
+      <h3
+        class="font-roboto-serif before:bg-accent text-text flex text-xl font-bold before:mr-2 before:inline-block before:h-full before:w-2 before:rounded-full"
+        itemprop="name"
+      >
         {props.title}
       </h3>
-      <div class="flex flex-wrap items-center justify-center gap-2.5">
-        <For each={props.tools}>{(tool) => <ToolComponent {...tool} />}</For>
+      <div
+        class="flex flex-wrap items-center justify-center gap-2.5"
+        role="list"
+        aria-label={`${props.title} tools`}
+      >
+        <For each={props.tools}>
+          {(tool, index) => (
+            <div
+              role="listitem"
+              itemprop="itemListElement"
+              itemscope
+              itemtype="https://schema.org/ListItem"
+            >
+              <meta itemprop="position" content={String(index() + 1)} />
+              <ToolComponent {...tool} />
+            </div>
+          )}
+        </For>
       </div>
-    </div>
+    </article>
   );
 };

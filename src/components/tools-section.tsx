@@ -36,9 +36,6 @@ export const useToolsContext = () => {
 
 const ToolsSection: Component = () => {
   const [activeTool, setActiveTool] = createSignal<ToolDetails | null>(null);
-  const [contentHeight, setContentHeight] = createSignal<string | number>(
-    "auto",
-  );
 
   const device = createDeviceSize();
 
@@ -82,14 +79,6 @@ const ToolsSection: Component = () => {
         { opacity: 0, x: -10 },
         { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
       );
-
-      // Fixed Height Logic
-      requestAnimationFrame(() => {
-        if (contentRef) {
-          // We need to capture the height of the inner content, plus padding
-          setContentHeight(contentRef.scrollHeight + 64);
-        }
-      });
     }
   });
 
@@ -101,91 +90,94 @@ const ToolsSection: Component = () => {
         clearActiveTool: () => setActiveTool(null),
       }}
     >
-      <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
+      <>
+        <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
 
-      <section aria-label="Tech Stack" class="w-full">
-        <div class="font-roboto-serif text-text my-4 flex flex-col gap-2.5 text-center">
-          <h1 class="text-5xl font-bold">{m.tools_title()}</h1>
-          <p class="text-xl">{m.tools_subtitle()}</p>
-          <p class="text-xl text-gray-500">{m.tools_instruction()}</p>
-        </div>
+        <section aria-label="Tech Stack" class="w-full">
+          <div class="font-roboto-serif text-text my-8 flex w-full flex-col items-center justify-center gap-2.5 px-8 text-center *:max-w-3xl">
+            <h1 class="text-5xl font-bold">{m.tools_title()}</h1>
+            <p class="font-space-grotesk text-text/70 text-lg">
+              {m.tools_subtitle()}
+            </p>
+            <p class="font-space-grotesk text-text/70 text-lg">
+              {m.tools_instruction()}
+            </p>
+          </div>
 
-        <div class="mx-auto flex max-w-7xl flex-col-reverse items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-[1fr_2fr] lg:items-start">
-          <div
-            ref={cardRef}
-            style={{
-              height: `${contentHeight()}px`,
-            }}
-            class="bg-card sticky top-8 flex w-full max-w-lg flex-col items-center justify-center gap-1.5 overflow-hidden rounded-xl p-8 backdrop-blur-sm transition-[height] duration-300 ease-out"
-          >
-            <Show
-              when={activeTool()}
-              fallback={
-                <div ref={contentRef} class="flex flex-col gap-2 text-center">
-                  <span class="font-roboto-serif bg-secondary-light text-text rounded-2xl px-4 py-2 text-5xl font-bold">
-                    {m.tools_hello()}
-                  </span>
-                  <span class="font-roboto-serif text-text text-3xl font-bold">
-                    {m.tools_instruction_fallback()}
-                  </span>
-                </div>
-              }
+          <div class="mx-auto flex max-w-7xl flex-col-reverse items-center justify-center gap-8 p-8 lg:grid lg:grid-cols-[1fr_2fr] lg:items-start">
+            <div
+              ref={cardRef}
+              class="bg-card flex h-full w-full max-w-lg flex-col items-center justify-center gap-1.5 overflow-hidden rounded-xl p-8 backdrop-blur-sm transition-[height] duration-300 ease-out *:sticky *:top-0"
             >
-              <article ref={contentRef} class="flex w-full flex-col gap-6">
-                <header class="flex items-center gap-4">
-                  <img
-                    src={activeTool()!.logo}
-                    class={cn(
-                      "rounded-xl object-contain",
-                      activeTool()!.variant == "primary"
-                        ? "bg-accent"
-                        : "bg-secondary-light",
-                      activeTool()!.variant == "language"
-                        ? "aspect-4/3 h-16 rounded-full"
-                        : "h-16 w-16 p-2",
-                    )}
-                    alt={`${activeTool()!.title} logo`}
-                  />
-                  <h3 class="font-space-grotesk text-text text-2xl font-bold">
-                    {activeTool()!.title}
-                  </h3>
-                </header>
-
-                <div class="space-y-2">
-                  <div class="flex justify-between text-sm">
-                    <span class="font-space-grotesk text-text">
-                      {m.tools_experience_level()}
+              <Show
+                when={activeTool()}
+                fallback={
+                  <div ref={contentRef} class="flex flex-col gap-2 text-center">
+                    <span class="font-roboto-serif bg-secondary-light text-text rounded-2xl px-4 py-2 text-5xl font-bold">
+                      {m.tools_hello()}
                     </span>
-                    <span class="font-space-grotesk text-text font-medium">
-                      {activeTool()!.experience}%
+                    <span class="font-roboto-serif text-text text-3xl font-bold">
+                      {m.tools_instruction_fallback()}
                     </span>
                   </div>
-                  <div class="h-3 w-full overflow-hidden rounded-full bg-gray-700">
-                    <div
-                      class="from-accent to-secondary h-full rounded-full bg-linear-to-r transition-all duration-500"
-                      style={`width: ${activeTool()!.experience}%`}
+                }
+              >
+                <article ref={contentRef} class="flex w-full flex-col gap-6">
+                  <div class="flex items-center gap-4">
+                    <img
+                      src={activeTool()!.logo}
+                      class={cn(
+                        "rounded-xl object-contain",
+                        activeTool()!.variant == "primary"
+                          ? "bg-accent"
+                          : "bg-secondary-light",
+                        activeTool()!.variant == "language"
+                          ? "aspect-4/3 h-16 rounded-full"
+                          : "h-16 w-16 p-2",
+                      )}
+                      alt={`${activeTool()!.title} logo`}
                     />
+                    <h2 class="font-space-grotesk text-text text-2xl font-bold">
+                      {activeTool()!.title}
+                    </h2>
                   </div>
-                </div>
 
-                <p class="font-space-grotesk text-text text-lg leading-relaxed">
-                  {activeTool()!.description}
-                </p>
-              </article>
-            </Show>
-          </div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                      <span class="font-space-grotesk text-text">
+                        {m.tools_experience_level()}
+                      </span>
+                      <span class="font-space-grotesk text-text font-medium">
+                        {activeTool()!.experience}%
+                      </span>
+                    </div>
+                    <div class="h-3 w-full overflow-hidden rounded-full bg-gray-700">
+                      <div
+                        class="from-accent to-secondary h-full rounded-full bg-linear-to-r transition-all duration-500"
+                        style={`width: ${activeTool()!.experience}%`}
+                      />
+                    </div>
+                  </div>
 
-          <div
-            class="flex flex-wrap items-center justify-center gap-8"
-            role="list"
-            aria-label="List of tools"
-          >
-            <For each={tools}>
-              {(group) => <ToolGroup {...group}></ToolGroup>}
-            </For>
+                  <div class="font-space-grotesk text-text max-h-48 overflow-y-auto pr-2 text-lg leading-relaxed">
+                    <p>{activeTool()!.description}</p>
+                  </div>
+                </article>
+              </Show>
+            </div>
+
+            <div
+              class="flex flex-wrap items-center justify-center gap-8"
+              role="list"
+              aria-label="List of tools"
+            >
+              <For each={tools}>
+                {(group) => <ToolGroup {...group}></ToolGroup>}
+              </For>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </>
     </ToolsContext.Provider>
   );
 };
