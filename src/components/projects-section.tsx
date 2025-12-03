@@ -16,7 +16,7 @@ export default function ProjectsSection() {
         m.projects_badge_google_indexing(),
       ],
       link: "https://perlabrazilor.com",
-      image: "/first-project.png",
+      image: "/first-project.webp",
       primaryColor: "#1D5B17",
       secondaryColor: "#ADE091",
     },

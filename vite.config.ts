@@ -33,8 +33,8 @@ export default defineConfig({
       },
       pages: prerenderRoutes,
     }),
-    solidPlugin({ ssr: true }),
 
+    solidPlugin({ ssr: true }),
     compression({
       algorithm: "brotliCompress",
       ext: ".br",

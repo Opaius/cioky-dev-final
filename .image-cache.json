@@ -1,0 +1,114 @@
+{
+  "tools-icons/romanian.svg": {
+    "hash": "e271c19e671a2cd4c229795d02802eb0",
+    "timestamp": "2025-12-03T16:19:37.808Z"
+  },
+  "tools-icons/figma.svg": {
+    "hash": "879b6292ec71fbe5a933d65334da25a5",
+    "timestamp": "2025-12-03T16:19:37.813Z"
+  },
+  "tools-icons/node-js.svg": {
+    "hash": "c61a8da8710db4f76e2d5b6392ae3c74",
+    "timestamp": "2025-12-03T16:19:37.817Z"
+  },
+  "tools-icons/css.svg": {
+    "hash": "adf68d9c0a27dd6b541ebf945fe20dbb",
+    "timestamp": "2025-12-03T16:19:37.830Z"
+  },
+  "tools-icons/english.svg": {
+    "hash": "96b0e0a2ae34623fefafcfbf6f53a3da",
+    "timestamp": "2025-12-03T16:19:37.835Z"
+  },
+  "tools-icons/github.svg": {
+    "hash": "1004615a9f5a31c963763b46fc749609",
+    "timestamp": "2025-12-03T16:19:37.838Z"
+  },
+  "tools-icons/vscode.svg": {
+    "hash": "200180bf2ce6a88fcca63bbe291952fb",
+    "timestamp": "2025-12-03T16:19:37.861Z"
+  },
+  "tools-icons/supabase.svg": {
+    "hash": "dd5def408893e8a4b548798b97e6b3ee",
+    "timestamp": "2025-12-03T16:19:37.864Z"
+  },
+  "tools-icons/npm.svg": {
+    "hash": "dfb8c0782d0dd5e14f4fd740dc585bd6",
+    "timestamp": "2025-12-03T16:19:37.867Z"
+  },
+  "tools-icons/zed.svg": {
+    "hash": "db837c07b78a4ada007a3bf3827b0bd9",
+    "timestamp": "2025-12-03T16:19:37.869Z"
+  },
+  "tools-icons/postgresql.svg": {
+    "hash": "aee070bdddae41f7d54949fa8e9f641b",
+    "timestamp": "2025-12-03T16:19:37.876Z"
+  },
+  "tools-icons/convex.svg": {
+    "hash": "69fe86a0f00d9cf36debb1b41555eb69",
+    "timestamp": "2025-12-03T16:19:37.880Z"
+  },
+  "tools-icons/bun.svg": {
+    "hash": "9ce63cc10cafd95fd9f03a330f927b28",
+    "timestamp": "2025-12-03T16:19:37.883Z"
+  },
+  "tools-icons/typescript.svg": {
+    "hash": "60a81a18c7f30c25a9ee28ac82d2351e",
+    "timestamp": "2025-12-03T16:19:37.887Z"
+  },
+  "tools-icons/tailwind-css.svg": {
+    "hash": "e2c6899914f79c7dd2d31aad8a472aac",
+    "timestamp": "2025-12-03T16:19:37.893Z"
+  },
+  "tools-icons/turborepo.svg": {
+    "hash": "1506360865ff0c9957d4ddaaee91ec89",
+    "timestamp": "2025-12-03T16:19:37.896Z"
+  },
+  "tools-icons/javascript.svg": {
+    "hash": "7ac89a4ef14f5d05f65a8586017ccf65",
+    "timestamp": "2025-12-03T16:19:37.900Z"
+  },
+  "tools-icons/drizzle.svg": {
+    "hash": "05ae3c38ce800c2e60767dbb61142526",
+    "timestamp": "2025-12-03T16:19:37.903Z"
+  },
+  "tools-icons/solidjs.svg": {
+    "hash": "3a9d49546563fcf846efd68fdb3307d4",
+    "timestamp": "2025-12-03T16:19:37.905Z"
+  },
+  "tools-icons/pnpm.svg": {
+    "hash": "2d6edc4da14b9248f41f16274640b43c",
+    "timestamp": "2025-12-03T16:19:37.909Z"
+  },
+  "tools-icons/react.svg": {
+    "hash": "664d77b4d7aafcbb0a3e26d76fc5f317",
+    "timestamp": "2025-12-03T16:19:37.911Z"
+  },
+  "tools-icons/intellij-idea.svg": {
+    "hash": "38d80ddde8c8f800bffaecf5f647a2f3",
+    "timestamp": "2025-12-03T16:19:37.913Z"
+  },
+  "tools-icons/tanstack-start.svg": {
+    "hash": "df37000f20b0f67c28a010344592dc23",
+    "timestamp": "2025-12-03T16:19:37.918Z"
+  },
+  "tools-icons/next-js.svg": {
+    "hash": "7c4df38ac804debc142f6345c98f6ec2",
+    "timestamp": "2025-12-03T16:19:37.920Z"
+  },
+  "tools-icons/git.svg": {
+    "hash": "e5e3b7d35c51fedeaf393561d09e2d53",
+    "timestamp": "2025-12-03T16:19:37.926Z"
+  },
+  "og/ro-home.png": {
+    "hash": "4da74a0f492c2f5b01c2d1520a9899e7",
+    "timestamp": "2025-12-03T16:19:38.038Z"
+  },
+  "og/en-home.png": {
+    "hash": "8e90ec3a976815d9082dcd9dfe4dded3",
+    "timestamp": "2025-12-03T16:19:38.138Z"
+  },
+  "first-project.webp": {
+    "hash": "d94dd8b3f255d835526f54c27b75a01a",
+    "timestamp": "2025-12-03T16:19:38.329Z"
+  }
+}
