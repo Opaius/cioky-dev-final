@@ -59,6 +59,7 @@ export default function BentoSection() {
 
   return (
     <section
+      id="bento-section"
       aria-label="Freelancer Benefits"
       class="grid w-full place-items-center"
     >

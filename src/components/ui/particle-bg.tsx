@@ -1,7 +1,6 @@
 import {
   Show,
   createEffect,
-  createMemo,
   createSignal,
   mergeProps,
   onCleanup,
@@ -73,7 +72,7 @@ const vertex = /* glsl */ `
 
     // Spread particles in a spherical volume
     vec3 pos = position * uSpread;
-    pos.z *= 10.0; // Stretch the dist  ribution along the z-axis
+    pos.z *= 10.0; // Stretch the distribution along the z-axis
 
     vec4 mPos = modelMatrix * vec4(pos, 1.0);
 
@@ -124,6 +123,7 @@ const fragment = /* glsl */ `
     }
   }
 `;
+
 /**
  * @component Particles
  * @description A SolidJS component that renders an animated 3D particle background using OGL (a minimal WebGL library) and GSAP.
@@ -156,6 +156,14 @@ const Particles: Component<ParticlesProps> = (props) => {
   const mousePos = { x: 0, y: 0 };
   // A signal to track WebGL support.
   const [webglSupported, setWebglSupported] = createSignal(true);
+  // Signal to hold particle data - initialized empty and populated asynchronously
+  const [particleData, setParticleData] = createSignal({
+    positions: new Float32Array(0),
+    randoms: new Float32Array(0),
+    colors: new Float32Array(0),
+  });
+  // Signal to track loading state
+  const [isLoading, setIsLoading] = createSignal(true);
 
   // onMount runs once after the component's DOM elements are mounted.
   onMount(() => {
@@ -164,66 +172,98 @@ const Particles: Component<ParticlesProps> = (props) => {
       console.warn("WebGL is not supported. Particle background is disabled.");
       return;
     }
+
     if (!containerRef) return;
+
     // Fade in the canvas container for a smooth appearance.
     gsap.fromTo(containerRef, { opacity: 0 }, { opacity: 1, duration: 1 });
-  });
 
-  // Memoize expensive particle data generation.
-  // This recalculates only when particleCount or particleColors change.
-  const particleData = createMemo(() => {
-    if (typeof window === "undefined" || typeof document === "undefined")
-      return {
-        positions: new Float32Array([]),
-        randoms: new Float32Array([]),
-        colors: new Float32Array([]),
-      };
-    const count = merged.particleCount;
-    const positions = new Float32Array(count * 3);
-    const randoms = new Float32Array(count * 4);
-    const colors = new Float32Array(count * 3);
-
-    const palette =
-      merged.particleColors.length > 0 ? merged.particleColors : defaultColors;
-    const fallbackColor = hexToRgb(palette[0] ?? "#000000");
-
-    for (let i = 0; i < count; i++) {
-      let x: number, y: number, z: number, len: number;
-      do {
-        x = Math.random() * 2 - 1;
-        y = Math.random() * 2 - 1;
-        z = Math.random() * 2 - 1;
-        len = x * x + y * y + z * z;
-      } while (len > 1 || len === 0);
-      const r = Math.cbrt(Math.random());
-      positions.set([x * r, y * r, z * r], i * 3);
-      randoms.set(
-        [Math.random(), Math.random(), Math.random(), Math.random()],
-        i * 4,
-      );
-
-      // Handle potential invalid color strings gracefully.
-      try {
-        const colorStr = palette[Math.floor(Math.random() * palette.length)];
-        const col = hexToRgb(colorStr, true);
-        colors.set(col, i * 3);
-      } catch (e) {
-        console.warn(
-          `Invalid color string in particleColors. Using fallback.`,
-          e,
+    // OPTIMIZATION: Use requestIdleCallback for better scheduling of heavy calculations
+    // This allows the browser to run calculations during idle periods, preventing UI blocking
+    const scheduleHeavyWork = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(
+          () => {
+            calculateParticleData();
+          },
+          { timeout: 1000 }, // Ensure it runs within 1 second even if browser is busy
         );
-        colors.set(fallbackColor, i * 3);
+      } else {
+        // Fallback to setTimeout for browsers that don't support requestIdleCallback
+        setTimeout(calculateParticleData, 0);
       }
-    }
-    return { positions, randoms, colors };
+    };
+
+    const calculateParticleData = () => {
+      const count = merged.particleCount;
+      const positions = new Float32Array(count * 3);
+      const randoms = new Float32Array(count * 4);
+      const colors = new Float32Array(count * 3);
+
+      const palette =
+        merged.particleColors.length > 0
+          ? merged.particleColors
+          : defaultColors;
+
+      // OPTIMIZATION: Pre-calculate colors ONCE outside the loop
+      // This avoids calling getComputedStyle for each particle (200+ times)
+      const resolvedPalette: [number, number, number][] = [];
+      for (const color of palette) {
+        try {
+          const rgb = hexToRgb(color, true);
+          resolvedPalette.push(rgb);
+        } catch (e) {
+          console.warn(
+            `Invalid color string in particleColors: ${color}. Using fallback white.`,
+            e,
+          );
+          resolvedPalette.push([1, 1, 1]); // fallback white (normalized)
+        }
+      }
+
+      // If palette is empty after processing, use a default white color
+      if (resolvedPalette.length === 0) {
+        resolvedPalette.push([1, 1, 1]);
+      }
+
+      for (let i = 0; i < count; i++) {
+        let x: number, y: number, z: number, len: number;
+        do {
+          x = Math.random() * 2 - 1;
+          y = Math.random() * 2 - 1;
+          z = Math.random() * 2 - 1;
+          len = x * x + y * y + z * z;
+        } while (len > 1 || len === 0);
+
+        const r = Math.cbrt(Math.random());
+        positions.set([x * r, y * r, z * r], i * 3);
+        randoms.set(
+          [Math.random(), Math.random(), Math.random(), Math.random()],
+          i * 4,
+        );
+
+        // Use the pre-calculated color array
+        const col =
+          resolvedPalette[Math.floor(Math.random() * resolvedPalette.length)];
+        colors.set(col, i * 3);
+      }
+
+      setParticleData({ positions, randoms, colors });
+      setIsLoading(false);
+    };
+
+    scheduleHeavyWork();
   });
 
   // createEffect re-runs when its dependencies change, rebuilding the WebGL scene.
   createEffect(() => {
     if (!webglSupported() || !containerRef) return;
 
+    const data = particleData();
+    // Don't initialize WebGL until particle data is ready
+    if (data.positions.length === 0) return;
+
     const container = containerRef;
-    const data = particleData(); // Depend on memoized data.
     const renderer = new Renderer({ depth: false, alpha: true });
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
@@ -323,6 +363,15 @@ const Particles: Component<ParticlesProps> = (props) => {
       ref={containerRef}
       class={`relative h-full w-full ${merged.class || ""}`}
     >
+      {/* Loading skeleton */}
+      <Show when={isLoading()}>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="h-8 w-8 animate-spin rounded-full border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite]">
+            <span class="sr-only">Loading particles...</span>
+          </div>
+        </div>
+      </Show>
+
       <Show when={!webglSupported()}>
         <div class="absolute inset-0 flex items-center justify-center text-sm text-gray-500">
           <p>WebGL is not supported on this browser.</p>

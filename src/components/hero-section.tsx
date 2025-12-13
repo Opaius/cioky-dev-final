@@ -109,8 +109,14 @@ export function HeroSection() {
             <Button
               class="font-space-grotesk text-text z-10 w-full rounded-xl font-bold"
               as="a"
-              href="/resume"
               aria-label="View my resume and skills"
+              onClick={() => {
+                scrollTo({
+                  top:
+                    document.getElement`ById("bento-section")!.offsetTop - 100,
+                  behavior: "smooth",
+                });
+              }}
             >
               {m.hero_button_resume()}
             </Button>

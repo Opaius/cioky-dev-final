@@ -3,6 +3,12 @@ export const getComputedColor = (color: string): string => {
   if (typeof window === "undefined" && typeof document === "undefined")
     return color;
 
+  // Simple cache to avoid repeated getComputedStyle calls
+  const cacheKey = color;
+  if (getComputedColor.cache.has(cacheKey)) {
+    return getComputedColor.cache.get(cacheKey)!;
+  }
+
   let colorToConvert = color;
 
   // If it's a CSS variable, resolve it first
@@ -17,7 +23,9 @@ export const getComputedColor = (color: string): string => {
       colorToConvert = resolvedColor.trim();
     } catch (e) {
       console.error("Could not resolve CSS variable:", color, e);
-      return "rgb(255, 255, 255)"; // Fallback to white in RGB format
+      const fallback = "rgb(255, 255, 255)";
+      getComputedColor.cache.set(cacheKey, fallback);
+      return fallback;
     }
   }
 
@@ -26,17 +34,30 @@ export const getComputedColor = (color: string): string => {
     const canvas = document.createElement("canvas");
     canvas.width = canvas.height = 1;
     const ctx = canvas.getContext("2d");
-    if (!ctx) return "rgb(255, 255, 255)";
+    if (!ctx) {
+      const fallback = "rgb(255, 255, 255)";
+      getComputedColor.cache.set(cacheKey, fallback);
+      return fallback;
+    }
 
     ctx.fillStyle = colorToConvert;
     ctx.fillRect(0, 0, 1, 1);
     const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
 
-    return a === 255
-      ? `rgb(${r}, ${g}, ${b})`
-      : `rgba(${r}, ${g}, ${b}, ${a / 255})`;
+    const result =
+      a === 255
+        ? `rgb(${r}, ${g}, ${b})`
+        : `rgba(${r}, ${g}, ${b}, ${a / 255})`;
+
+    getComputedColor.cache.set(cacheKey, result);
+    return result;
   } catch (e) {
     console.error("Could not convert color to RGB:", colorToConvert, e);
-    return "rgb(255, 255, 255)";
+    const fallback = "rgb(255, 255, 255)";
+    getComputedColor.cache.set(cacheKey, fallback);
+    return fallback;
   }
 };
+
+// Add cache as a static property
+getComputedColor.cache = new Map<string, string>();

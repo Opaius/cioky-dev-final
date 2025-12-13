@@ -43,7 +43,7 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
       to: { opacity: 1, y: 0 },
       threshold: 0.1,
       rootMargin: "-100px",
-      tag: "div" as const, // Default to div to better handle mixed block/inline children
+      tag: "div" as const, // Default to div to better handle block/inline children
       textAlign: "center" as const,
       class: "",
       start: true,
@@ -61,6 +61,13 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger, GSAPSplitText);
+
+    // Hide the element immediately when JS loads to prevent flash
+    // This ensures text is hidden before any animation starts
+    if (ref) {
+      gsap.set(ref, { visibility: "hidden" });
+    }
+
     if (document.fonts.status === "loaded") {
       setFontsLoaded(true);
     } else {
@@ -88,6 +95,10 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
     }
 
     const ctx = gsap.context(() => {
+      // Element should already be hidden from onMount
+      // Double-check to ensure it's hidden before animation
+      gsap.set(el, { visibility: "hidden" });
+
       const splitInstance = new GSAPSplitText(el, {
         type: merged.splitType,
         smartWrap: true,
@@ -97,26 +108,27 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
         charsClass: "split-char",
         reduceWhiteSpace: false,
         onSplit: (self) => {
-          gsap.set(el, { visibility: "visible" });
-
           const targets =
             merged.splitType?.includes("lines") && self.lines.length > 0
               ? self.lines
               : el.children;
 
-          gsap.fromTo(
-            targets,
-            { ...merged.from },
-            {
-              ...merged.to,
-              duration: merged.duration,
-              ease: merged.ease,
-              stagger: (merged.delay ?? 100) / 1000,
-              onComplete: merged.onLetterAnimationComplete,
-              willChange: "transform, opacity",
-              force3D: true,
-            },
-          );
+          // First, set all split elements to the "from" state
+          gsap.set(targets, { ...merged.from });
+
+          // Then make parent visible for animation
+          gsap.set(el, { visibility: "visible" });
+
+          // Now animate from the "from" state to "to" state
+          gsap.to(targets, {
+            ...merged.to,
+            duration: merged.duration,
+            ease: merged.ease,
+            stagger: (merged.delay ?? 100) / 1000,
+            onComplete: merged.onLetterAnimationComplete,
+            willChange: "transform, opacity",
+            force3D: true,
+          });
         },
       });
 
@@ -143,8 +155,8 @@ const SplitText: ParentComponent<SplitTextProps> = (props) => {
         "text-align": merged.textAlign,
         "word-wrap": "break-word",
         contain: "paint layout",
-        visibility: "hidden",
         "will-change": "transform, opacity",
+        visibility: "visible", // Visible initially for SSR/no-JS
       }}
     >
       {resolvedChildren()}
